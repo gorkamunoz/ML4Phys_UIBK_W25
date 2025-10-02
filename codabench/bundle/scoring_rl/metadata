@@ -1,2 +1,0 @@
-command: python3 $program/scoring_program.py $input $output 
-description: Running HW scoring
