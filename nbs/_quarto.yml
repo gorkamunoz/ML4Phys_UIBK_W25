@@ -2,6 +2,7 @@ project:
   type: website
   preview:
     port: 4200
+  output-dir: _docs
 
 format:
   html:
@@ -9,17 +10,22 @@ format:
     css: styles.css
     highlight-style: pygments
     toc: true
+    
 
 website:
-  twitter-card: true
+  title: ML in classical and quantum physics UIBK W25
   open-graph: true
-  repo-actions: [issue]
+  site-url: "https://gorkamunoz.github.io/Machine-Learning-Course"
+  description: "Machine learning in classical and quantum physics"
+  repo-branch: master
+  repo-url: "https://github.com/gorkamunoz/Machine-Learning-Course"
   navbar:
     background: '#003361'
     foreground: "#F39200"
     collapse-below: lg
     search: true
+    logo: figures/logo.png
   sidebar:
     style: floating
 
-metadata-files: [nbdev.yml, sidebar.yml]
+metadata-files: [sidebar.yml]

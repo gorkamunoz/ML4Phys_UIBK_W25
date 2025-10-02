@@ -2,8 +2,8 @@
 
 d = { 'settings': { 'branch': 'master',
                 'doc_baseurl': '/Machine-Learning-Course',
-                'doc_host': 'https://BorjaRequena.github.io',
-                'git_url': 'https://github.com/BorjaRequena/Machine-Learning-Course',
+                'doc_host': 'https://gorkamunoz.github.io',
+                'git_url': 'https://github.com/gorkamunoz/Machine-Learning-Course',
                 'lib_path': 'lectures_ml'},
   'syms': { 'lectures_ml.data_gen': { 'lectures_ml.data_gen.curve': ('lib_nbs/data_gen.html#curve', 'lectures_ml/data_gen.py'),
                                       'lectures_ml.data_gen.line': ('lib_nbs/data_gen.html#line', 'lectures_ml/data_gen.py'),
