@@ -7,7 +7,6 @@ project:
 format:
   html:
     theme: yeti
-    css: styles.css
     highlight-style: pygments
     toc: true
     

@@ -2,7 +2,7 @@ project:
   output-dir: _docs
 
 website:
-  title: "lectures_ml"
+  title: "ml4phys_ibk_w25"
   site-url: "https://gorkamunoz.github.io/Machine-Learning-Course"
   description: "Machine learning in classical and quantum physics"
   repo-branch: master
