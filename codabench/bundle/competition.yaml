@@ -1,0 +1,100 @@
+# The Yaml file contains the main parameters describing the challenge.
+# You can learn more about the possible settings here: # More options here: https://github.com/codalab/codabench/wiki/Yaml-Structure
+
+# Main settings
+version: 2 # this means that it is a Codabench bundle
+title: Machine Learning for Classical and Quantum Physics - UIBK W25
+description: Platform for delivering the homeworks of the Master course "Machine Learning for Classical and Quantum Physics" at the UIBK, Winter Semester 25/26
+image: logo.png
+registration_auto_approve: True  # do not require approval from admin to join the comp
+docker_image: 'codalab/codalab-legacy:gpu'
+
+# Documentation web pages
+terms: pages/terms.html
+pages:
+  - title: Overview
+    file: pages/overview.html
+  - title: Data 
+    file: pages/data.html
+  - title: Code evaluation 
+    file: pages/evaluation.html
+
+##### TASKS ######
+tasks:
+- index: 0
+  name: Classification
+  description: 'Homework 1 - Classification of Ising configurations'
+  is_public: false
+  input_data: input_data/classification
+  reference_data: reference_data/classification
+  scoring_program: scoring_classification
+  ingestion_program: ingestion_program
+  
+- index: 1
+  name: Regression
+  description: 'Homework 2 - Regression of the anomalous exponent of stochastic trajectories'
+  is_public: false
+  input_data: input_data/regression
+  reference_data: reference_data/regression
+  scoring_program: scoring_regression
+  ingestion_program: ingestion_program
+
+- index: 2
+  name: Reinforcement learning
+  description: 'Homework 3 - Reinforcement learning a quantum experiment'
+  is_public: false
+  input_data: input_data/rl
+  reference_data: reference_data/rl
+  scoring_program: scoring_rl
+  ingestion_program: ingestion_program
+solutions: []
+
+##### PHASES ####
+phases:
+- index: 0
+  name: Classification
+  description: 'HW1'
+  start: 10-03-2025
+  end: 11-20-2025
+  max_submissions_per_day: 1
+  public_data: public_data/classification
+  max_submissions: 7
+  execution_time_limit: 500
+  tasks:
+  - 0
+  solutions: []
+- index: 1
+  name: Regression
+  description: 'HW2'
+  start: 11-21-2025
+  end: 12-04-2025
+  max_submissions_per_day: 1
+  max_submissions: 7
+  execution_time_limit: 500
+  tasks:
+  - 1
+  solutions: []
+- index: 2
+  name: Reinforcement Learning
+  description: 'HW3'
+  start: 12-05-2025
+  end: 12-18-2025
+  max_submissions_per_day: 1
+  max_submissions: 7
+  execution_time_limit: 500
+  tasks:
+  - 2
+  solutions: []
+
+# Leaderboard
+leaderboards:
+- index: 0
+  title: Results
+  key: Results
+  columns:
+  - title: Prediction score
+    key: loss
+    index: 0
+    sorting: desc
+    computation: null
+    computation_indexes: null
