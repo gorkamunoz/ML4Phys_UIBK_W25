@@ -1,0 +1,132 @@
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true
+    }
+  });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- ########################## TASK 1 ########################## -->
+
+<h2> Task 1 - Classification of Ising configurations</h2>
+
+The task here is predict the phase of an Ising configuration. We consider here a 2D square lattice of  M x M spins under periodic boundary conditions and the Hamiltonian:
+
+$$
+H = J \sum_{\left< ij \right>} \sigma_i \sigma_j,
+$$
+
+where <code>< ij ></code> refers to nearest-neighbors. As you may know from your condensed matter courses, this system exhibits a phase transition at the critical temperature 
+
+$$
+T_c = \frac{2J}{k \ln (1+\sqrt{2})}.
+$$
+
+Your goal is to predict the phase of a given M x M configuartion. We will consider that
+
+$$
+\mathrm{label}_i = 
+\begin{cases}
+  0 & \text{if } T_i < T_c \\
+  1 & \text{if } T_i \geq T_c
+\end{cases}
+$$
+
+<h3> Data format </h3>
+
+The Public Data (Get Started > Files) consists of two files:
+<ul>
+    <li><code>classification_input.pt</code>: this <code>torch</code> file contains spin configurations in a tensor of shape <code>N x M x M</code>, 
+        where N is the number of configurations and M x M the number of spins.
+    </li>
+    <li><code>classification_true.pt</code>: this <code>torch</code> file contains the labels (phase) in a tensor of shape <code>N</code>.
+    </li>
+</ul>
+Your submission code should expect an input of same as <code>classification_input.pt</code>, although note that N will change. 
+
+<h3> Metric </h3>
+As a classification problem, your predictions will be evaluated with the Binary Cross Entropy loss
+
+$$
+\mathcal{L}_{\text{BCE}} = - \frac{1}{N} \sum_{i=1}^{N} \Big[ y_i \log(p_i) + (1 - y_i)\log\big(1 - p_i\big) \Big],
+$$
+where $y_i$ is the groundtrouth phase and $p_i$ your predicition (either 0 or 1). 
+
+
+<h3> Baseline </h3>
+The magnetization is the order parameter of the 2D Ising model and hence can be used to classify the phase of a given configuration. We will hence use this as a baseline and aim
+to improve such estimator.
+
+
+
+<!-- ########################## TASK 2 ########################## -->
+
+<h2> Task 2 - Regression of the anomalous exponent of stochastic trajectories </h2>
+
+The task here is to predict the anomalous exponent &alpha of diffusing trajectories generated via Fractional Brownian motion. Anomalous diffusion is connected to non-equilibrium phenomena, flows of energy and information, and transport in living systems. Typically, anomalous diffusion is characterized by a nonlinear growth of the mean squared displacement MSD with respect to time t:
+
+$$
+\mathrm{MSD} \propto t^\alpha
+$$
+
+where &alpha; &isin; [0, 2]. Your goal in this task is to train a model that gives the best estimate of &alpha; for each input trajectory. If you want to know more about this problem, the regression of &alpha; was one of 
+the main topics of the <a href="https://www.nature.com/articles/s41467-021-26320-w" target="_blank">AnDi Challenge</a>. You can take a look at the paper to also see how different
+teams developed the best possible methods to characterize &alpha;. 
+
+
+<h3> Data format </h3>
+
+The Public Data (Get Started > Files) consists of two files:
+<ul>
+    <li><code>regression_input.pt</code>: this <code>torch</code> file contains the trajectories in a tensor of shape <code>N x T</code>, 
+        where N is the number of trajectories and T is their length.
+    </li>
+    <li><code>regression_true.pt</code>: this <code>torch</code> file contains the labels (anomalous exponent &alpha) in a tensor of shape <code>N</code>.
+    </li>
+</ul>
+Your submission code should expect an input of same as <code>regression_input.pt</code>, although note that N will change. 
+
+<h3> Metric </h3>
+
+Your predictions will be evaluated by means of the mean squared error (MSE):
+
+$$
+\mathrm{MSE} = \frac{1}{n} \sum_{i = 1}^n (\mathrm{pred}_i - \mathrm{true}_i)^2 
+$$
+
+<h3> Baseline </h3>
+ML is not the only way to compute the anomalous exponent, although as shown in the link above, it is actually the current best estimator. Before ML, the most typical
+method was to fit the MSD in logarithmic scale (see equation above). 
+
+The baseline for this problem will be given by such method. If you want to explore how good it performs you can use the <code>andi_datasets</code> library:
+
+<pre style="background: #f7f7f7; border: 1px solid #e1e1e8; border-radius: 4px; padding: 12px; overflow-x: auto; color: #333;">
+<span style="color: #008000;">from</span> andi_datasets.analysis <span style="color: #008000;">import</span> msd_analysis
+
+preds = msd_analysis().get_exponent(trajs[:,:,torch.newaxis]) <span style="color: grey;"> # Expects input N x T x dimension, hence the new axis</span>
+</pre>
+
+
+<b>Hint</b>: it is quite frequent that the models overfit to predicting all ones (the average exponent over the dataset). This gives rise to an MSD ~ 1/3.
+
+
+
+
+<!-- ########################## TASK 2 ########################## -->
+
+<h2> Task 3 - Reinforcement Learning</h2>
+TBD
+
+
+
+
+
+
+

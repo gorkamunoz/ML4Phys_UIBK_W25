@@ -2,8 +2,7 @@ project:
   output-dir: _docs
 
 website:
-  title: "lectures_ml"
-  site-url: "https://BorjaRequena.github.io/Neural-Network-Course"
-  description: "Machine learning course of the master in Quantum Sciences"
+  title: "ML in Classical and Quantum Physics (W25 UIBK)"
+  site-url: "https://gorkamunoz.github.io/ML-in-Physics"
   repo-branch: master
-  repo-url: "https://github.com/BorjaRequena/Neural-Network-Course"
+  repo-url: "https://github.com/gorkamunoz/ML-in-Physics"

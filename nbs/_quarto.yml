@@ -1,5 +1,7 @@
 project:
   type: website
+  preview:
+    port: 4200
 
 format:
   html:
@@ -13,12 +15,10 @@ website:
   open-graph: true
   repo-actions: [issue]
   navbar:
-    background: '#a6caf0'
+    background: '#003361'
+    foreground: "#F39200"
     collapse-below: lg
     search: true
-    right:
-      - icon: github
-        href: https://github.com/BorjaRequena/Neural-Network-Course
   sidebar:
     style: floating
 

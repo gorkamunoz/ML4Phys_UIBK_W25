@@ -1,55 +1,39 @@
 website:
-  repo-url: https://github.com/BorjaRequena/Neural-Network-Course
+  repo-url: https://github.com/gorkamunoz/Machine-Learning-Course
   repo-subdir: nbs
   repo-actions: [issue,source]
   sidebar:
+    foreground: "#F39200"
     style: "docked"
     collapse-level: 1
     contents:
-      - section: Course
-        href: course/index.ipynb
-        contents:
-          - course/introduction.ipynb
-          - section: Linear models
-            contents:
-              - course/linear_models/linear_regression.ipynb
-              - course/linear_models/polynomial_fit.ipynb
-              - course/linear_models/logistic_regression.ipynb
-              - course/linear_models/perceptron.ipynb
-          - course/probabilistic_view.ipynb
-          - section: Machine learning application overview
-            href: course/applications/applications-index.ipynb
-            contents:
-              - course/applications/applications-cv.ipynb
-              - course/applications/applications-nlp.ipynb
-              - course/applications/applications-tabular.ipynb
-          - section: Fundamentals of deep learning 
-            contents:
-              - course/deep_learning/neural_networks_from_scratch.ipynb
-              - course/deep_learning/pytorch_intro.ipynb                                         
-              - course/deep_learning/automatic_differentiation_pytorch.ipynb
-              - course/deep_learning/multiclass_classification_problem.ipynb
-              - course/deep_learning/regularization_techniques.ipynb                                            
-          - course/montecarlo_integration.ipynb
-          - course/rbm.ipynb
-          - section: Generative models
-            contents:
-              - course/generative/introduction.ipynb
-              - course/generative/language_models.ipynb
-          - section: Automatic differentiation for quantum computing
-            contents:
-              - course/quantum/QAOA.ipynb                                           
-              - course/quantum/VQE.ipynb    
-      - section: Homework
-        href: homeworks/index_homework.ipynb
-        contents:
-          - homeworks/01_regression.ipynb
-          - homeworks/02_perceptron.ipynb
-          - homeworks/03_generative.ipynb
-          - homeworks/04_ml_physics.ipynb
-          - homeworks/paper_report.ipynb
-      - section: Library
-        contents:
-          - lib_nbs/00_data_gen.ipynb
-          - lib_nbs/01_losses.ipynb
-          - lib_nbs/02_optimizers.ipynb
+      - href: index.ipynb
+        text: Get staterd
+      - href: https://borjarequena.github.io/Machine-Learning-Course/course/introduction.html
+        text: 1. Intro to ML ↗
+      # - section: Linear models
+      #   contents:
+          # - course/linear_models/linear_regression.ipynb
+      #     - course/linear_models/polynomial_fit.ipynb
+      #     - course/linear_models/logistic_regression.ipynb
+      #     - course/linear_models/perceptron.ipynb
+      #     - course/probabilistic_view.ipynb
+      # - section: Applications
+      #   href: course/applications/applications-index.ipynb
+      #   contents:
+      #     - course/applications/applications-cv.ipynb
+      #     - course/applications/applications-nlp.ipynb
+      #     - course/applications/applications-tabular.ipynb
+      # - section: Deep Learning 
+      #   contents:
+      #     - course/deep_learning/neural_networks_from_scratch.ipynb
+      #     - course/deep_learning/pytorch_intro.ipynb                                         
+      #     - course/deep_learning/automatic_differentiation_pytorch.ipynb
+      #     - course/deep_learning/multiclass_classification_problem.ipynb
+      #     - course/deep_learning/regularization_techniques.ipynb  
+      # - section: Generative models
+      #   contents:
+      #     - course/generative/introduction.ipynb
+      #     - course/rbm.ipynb
+      #     - course/generative/language_models.ipynb
+
