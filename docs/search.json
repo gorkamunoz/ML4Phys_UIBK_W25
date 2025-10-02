@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Machine Learning in Classical and Quantum Physics",
+    "section": "",
+    "text": "Welcome to the webpage of the ML for Physics Course at the UIBK. Here you will find most resources of the course, from explanatory notebooks to code snippets that will help us explore the wild world of ML."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Machine Learning in Classical and Quantum Physics",
+    "section": "Course description",
+    "text": "Course description\nThis course gives an introduction to machine learning and deep learning: starting from linear linear models al the way up to state of the art generative models. The material covers the following topics:\n\nWhat is actually machine learning?\nBasics of ML: From linear models to logistic regression\nML applications: from computer vision to Physics\nBasics of deep learning: from neural networks to Transformers\nUnsupervised learning and interpretable ML\nReinforcement Learning\nGenerative modelling: from Boltzmann machines to diffusion models\n\nThe course combines theory and practice in the form of jupyter notebooks with python. We make extensive use of specific librairies such as numpy, PyTorch and fastai."
+  },
+  {
+    "objectID": "index.html#evaluation",
+    "href": "index.html#evaluation",
+    "title": "Machine Learning in Classical and Quantum Physics",
+    "section": "Evaluation",
+    "text": "Evaluation\nHomeworks (50%)\nThere will be 3 homeworks, each equally contributing to the final mark. To know more about the homeworks, visit the Codabench platform. The day after the submission of each of the homeworks, your group will do a short presentation (5 mins.) about the methods you developed. The mark will calculated from your performance above the baseline (60%), the revision of the code + your presentations (35%) and an extra 5% based on your ranking’s position (first position gets the full 5% :), and we decrease linearly).\nFinal Project (30%)\nThe last weeks of the course you will work in groups on a final project, the topic of which will be made public at later stages. You will present your findings in a 20 minutes presentation in the last days of the course. The topics of the final projects will be decided later, based on the number of course participants.\nExam (20%)\nA short written exam, reviewing the main concepts taught in the course."
+  },
+  {
+    "objectID": "index.html#resources",
+    "href": "index.html#resources",
+    "title": "Machine Learning in Classical and Quantum Physics",
+    "section": "Resources",
+    "text": "Resources\n\nSome of the content of this course has been adapted from the book Machine Learning for the Quantum Sciences by A. Dawid et al., which serves as a gentle introduction to ML but also to its applications in quantum sciences.\nThe book Neural Networks and Deep Learning by Nielsen offers a nice hands-on introduction to the world of ML\nIf you are already fluent in Python, the course Practical Deep Learning for Coders is for you. Indeed, we will extensively use some of the tools developed therein, as for instance the library fastai.\nFor the Reinforcement Learning part of this course, the book Reinforcement Learning: An Introduction is the go-to resource"
+  },
+  {
+    "objectID": "index.html#previous-contributors",
+    "href": "index.html#previous-contributors",
+    "title": "Machine Learning in Classical and Quantum Physics",
+    "section": "Previous contributors",
+    "text": "Previous contributors\nPart of the content of this course was originally developed for by Borja Requena, Alexandre Dauphin, Marcin Płodzień and Paolo Stornati for the Master in Quantum Science and Technology Barcelona. The original course content can be found here."
+  }
+]
