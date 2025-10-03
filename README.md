@@ -40,6 +40,9 @@ of the code + your presentations (35%) and an extra 5% based on your
 ranking’s position (first position gets the full 5% :), and we decrease
 linearly).
 
+> Important: to get accepted in the competition, your Codabench username
+> must end with “\_UIBK25”.
+
 **Final Project (30%)**
 
 The last weeks of the course you will work in groups on a final project,
