@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/logistic_regression.html</loc>
+    <lastmod>2025-10-09T14:06:12.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/linear_regression.html</loc>
+    <lastmod>2025-10-09T14:06:14.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/polynomial_fit.html</loc>
+    <lastmod>2025-10-09T14:06:16.211Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/perceptron.html</loc>
+    <lastmod>2025-10-09T14:06:16.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/index.html</loc>
+    <lastmod>2025-10-09T14:06:17.116Z</lastmod>
+  </url>
+  <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/index.html</loc>
-    <lastmod>2025-10-03T11:09:15.552Z</lastmod>
+    <lastmod>2025-10-09T14:06:17.370Z</lastmod>
   </url>
 </urlset>

@@ -15,7 +15,7 @@ website:
         contents:
           - course/linear_models/linear_regression.ipynb
           - course/linear_models/polynomial_fit.ipynb          
-          - course/linear_models/logistic_regression.ipynb
+      #    - course/linear_models/logistic_regression.ipynb
       #     - course/linear_models/logistic_regression.ipynb
       #     - course/linear_models/perceptron.ipynb
       #     - course/probabilistic_view.ipynb
