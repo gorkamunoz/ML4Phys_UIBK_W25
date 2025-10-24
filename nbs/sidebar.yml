@@ -11,7 +11,7 @@ website:
         text: Get staterd
       - href: https://borjarequena.github.io/Machine-Learning-Course/course/introduction.html
         text: 1. Intro to ML ↗
-      - section: Linear models
+      - section: 2. Linear models
         contents:
           - course/linear_models/linear_regression.ipynb
           - course/linear_models/polynomial_fit.ipynb          
