@@ -40,8 +40,8 @@ of the code + your presentations (35%) and an extra 5% based on your
 ranking’s position (first position gets the full 5% :), and we decrease
 linearly).
 
-> Important: to get accepted in the competition, your Codabench username
-> must end with “\_UIBK25”.
+> **Important**: to get accepted in the competition, your Codabench
+> username must end with “\_UIBK25”.
 
 **Final Project (30%)**
 
@@ -56,6 +56,10 @@ the number of course participants.
 A short written exam, reviewing the main concepts taught in the course.
 
 ## Resources
+
+> **Important**: follow this [installation
+> guide](installation_guide.ipynb) to install the main resources of this
+> course.
 
 - Some of the content of this course has been adapted from the book
   [Machine Learning for the Quantum
