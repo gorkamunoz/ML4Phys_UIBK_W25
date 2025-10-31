@@ -1,0 +1,20 @@
+def forward(x, w_1, b_1, w_2):
+    "Forward pass through our neural network."
+    h = x @ w_1 + b_1
+    h_hat = sigmoid(h)
+    g = h_hat @ w_2
+    return sigmoid(g), g, h_hat, h
+
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+
+def backward(x, y, y_pred, w_2, h_hat):
+    "Backward pass through our neural network."
+    Q_2 = (y_pred-y[:, None])*y_pred*(1-y_pred)
+    Q_1 = Q_2 @ w_2.T*h_hat*(1-h_hat)
+
+    grad_w_1 = x.T @ Q_1
+    grad_b_1 = np.sum(Q_1, axis=0)
+    grad_w_2 = h_hat.T @ Q_2
+
+    return grad_w_1, grad_b_1, grad_w_2
