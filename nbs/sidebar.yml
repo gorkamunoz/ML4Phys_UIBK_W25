@@ -16,11 +16,11 @@ website:
           - course/linear_models/01_linear_regression.ipynb
           - course/linear_models/02_polynomial_fit.ipynb          
           - course/linear_models/03_logistic_regression.ipynb
-      # - section: 3. Deep learning
-      #   contents:
-      #     - course/deep_learning/01_neural_networks_from_scratch.ipynb
-      #     - course/deep_learning/02_nn_with_pytorch.ipynb
-      #     - course/probabilistic_view.ipynb
+      - section: 3. Deep learning
+        contents:
+          - course/deep_learning/01_neural_networks_from_scratch.ipynb
+          - course/deep_learning/02_nn_with_pytorch.ipynb
+          - course/deep_learning/03_regularization_techniques.ipynb
       # - section: Applications
       #   href: course/applications/applications-index.ipynb
       #   contents:
