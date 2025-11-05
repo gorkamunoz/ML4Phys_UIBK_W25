@@ -384,7 +384,7 @@ div.csl-indent {
 <p>The training of a perceptron consists on the iterative update of its parameters, <span class="math inline">\(W\)</span> and <span class="math inline">\(\mathbf{b}\)</span>, in order to minimize the loss function <span class="math inline">\(L\)</span>. Here, we will consider the mean-squared error:</p>
 <p><span class="math display">\[\begin{equation}
 \begin{split}
-L &amp; = \frac{1}{N}\sum_{i=1}^n L_i\\
+L &amp; = \frac{1}{N}\sum_{i=1}^N L_i\\
 L_i &amp; = \frac{1}{2}(y_i - \hat{y}_i)^2,
 \end{split}
 \end{equation}\]</span></p>
@@ -392,8 +392,8 @@ L_i &amp; = \frac{1}{2}(y_i - \hat{y}_i)^2,
 <p>We update the weights <span class="math inline">\(W\)</span> and biases <span class="math inline">\(\mathbf{b}\)</span> with a gradient descent procedure:</p>
 <p><span class="math display">\[\begin{equation}
 \begin{split}
-W &amp; \leftarrow W - \eta \frac{\partial L}{\partial W} = W - \frac{\eta}{n} \sum_{i=1}^N \frac{\partial L_i}{\partial W}\\
-\mathbf{b} &amp; \leftarrow \mathbf{b} - \eta \frac{\partial L}{\partial \mathbf{b}} = W - \frac{\eta}{n} \sum_{i=1}^n \frac{\partial L_i}{\partial \mathbf{b}},
+W &amp; \leftarrow W - \eta \frac{\partial L}{\partial W} = W - \frac{\eta}{N} \sum_{i=1}^N \frac{\partial L_i}{\partial W}\\
+\mathbf{b} &amp; \leftarrow \mathbf{b} - \eta \frac{\partial L}{\partial \mathbf{b}} = W - \frac{\eta}{N} \sum_{i=1}^N \frac{\partial L_i}{\partial \mathbf{b}},
 \end{split}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(\eta\)</span> is the learning rate.</p>
@@ -401,16 +401,16 @@ W &amp; \leftarrow W - \eta \frac{\partial L}{\partial W} = W - \frac{\eta}{n} \
 <p><span class="math display">\[\begin{equation}
 \begin{split}
 \frac{\partial L_i}{\partial W} &amp; = (y_i - \hat{y}_i)\frac{\partial y_i}{\partial W}\\
-\frac{\partial L_i}{\partial \mathbf{b}} &amp; = (y_i - \hat{y}_i)\frac{\partial y_i}{\partial \mathbf{b}}\\
-y_i &amp; = \sigma(z_i) \\
+\frac{\partial L_i}{\partial \mathbf{b}} &amp; = (y_i - \hat{y}_i)\frac{\partial \hat{y}_i}{\partial \mathbf{b}}\\
+\hat{y}_i &amp; = \sigma(z_i) \\
 z_i &amp; = x_i^T W + \mathbf{b}
 \end{split}
 \end{equation}\]</span></p>
 <p>With the chain rule we have:</p>
 <p><span class="math display">\[\begin{equation}
 \begin{split}
-\frac{\partial y_i}{\partial W} &amp; = \frac{\partial \sigma(z_i)}{\partial z_i}\frac{\partial z_i}{\partial W} \\
-\frac{\partial y_i}{\partial \mathbf{b}} &amp; = \frac{\partial \sigma(z_i)}{\partial z_i}\frac{\partial z_i}{\partial \mathbf{b}}
+\frac{\partial \hat{y}_i}{\partial W} &amp; = \frac{\partial \sigma(z_i)}{\partial z_i}\frac{\partial z_i}{\partial W} \\
+\frac{\partial \hat{y}_i}{\partial \mathbf{b}} &amp; = \frac{\partial \sigma(z_i)}{\partial z_i}\frac{\partial z_i}{\partial \mathbf{b}}
 \end{split}
 \end{equation}\]</span></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -426,8 +426,8 @@ Exercise
 <p>Show that update rule for weights <span class="math inline">\(W\)</span> and bias <span class="math inline">\(\mathbf{b}\)</span> is:</p>
 <p><span class="math display">\[\begin{equation}
 \begin{split}
-W &amp; \leftarrow W - \frac{\eta }{n}\sum_{i=1}^n (y_i - \hat{y}_i) y_i(1-y_i)x_i\\
-\mathbf{b} &amp; \leftarrow \mathbf{b} - \frac{\eta }{n}\sum_{i=1}^n (y_i - \hat{y}_i) y_i(1-y_i)
+W &amp; \leftarrow W - \frac{\eta }{N}\sum_{i=1}^N (y_i - \hat{y}_i) \hat{y}_i(1-\hat{y}_i)x_i\\
+\mathbf{b} &amp; \leftarrow \mathbf{b} - \frac{\eta }{N}\sum_{i=1}^N (y_i - \hat{y}_i) \hat{y}_i(1-\hat{y}_i)
 \end{split}
 \end{equation}\]</span></p>
 </div>

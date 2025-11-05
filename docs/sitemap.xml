@@ -2,58 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/logistic_regression.html</loc>
-    <lastmod>2025-11-04T10:49:19.675Z</lastmod>
+    <lastmod>2025-11-05T09:47:56.329Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/linear_regression.html</loc>
-    <lastmod>2025-11-04T10:49:21.661Z</lastmod>
+    <lastmod>2025-11-05T09:47:58.262Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/polynomial_fit.html</loc>
-    <lastmod>2025-11-04T10:49:22.963Z</lastmod>
+    <lastmod>2025-11-05T09:47:59.537Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-index.html</loc>
-    <lastmod>2025-11-04T10:49:23.311Z</lastmod>
+    <lastmod>2025-11-05T09:47:59.887Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-tabular.html</loc>
-    <lastmod>2025-11-04T10:49:23.732Z</lastmod>
+    <lastmod>2025-11-05T09:48:00.302Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-cv.html</loc>
-    <lastmod>2025-11-04T10:49:24.414Z</lastmod>
+    <lastmod>2025-11-05T09:48:01.052Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-nlp.html</loc>
-    <lastmod>2025-11-04T10:49:25.321Z</lastmod>
+    <lastmod>2025-11-05T09:48:01.947Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/application-genqc.html</loc>
-    <lastmod>2025-11-04T10:49:25.712Z</lastmod>
+    <lastmod>2025-11-05T09:48:02.362Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/index.html</loc>
-    <lastmod>2025-11-04T10:49:25.973Z</lastmod>
+    <lastmod>2025-11-05T09:48:02.645Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/neural_networks_from_scratch.html</loc>
-    <lastmod>2025-11-04T10:49:26.612Z</lastmod>
+    <lastmod>2025-11-05T09:48:03.279Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/regularization_techniques.html</loc>
-    <lastmod>2025-11-04T10:49:27.162Z</lastmod>
+    <lastmod>2025-11-05T09:48:03.834Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/nn_with_pytorch.html</loc>
-    <lastmod>2025-11-04T10:49:27.612Z</lastmod>
+    <lastmod>2025-11-05T09:48:04.305Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/nn_layers.html</loc>
+    <lastmod>2025-11-05T09:48:04.549Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/installation_guide.html</loc>
-    <lastmod>2025-11-04T10:49:27.848Z</lastmod>
+    <lastmod>2025-11-05T09:48:04.840Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/index.html</loc>
-    <lastmod>2025-11-04T10:49:28.068Z</lastmod>
+    <lastmod>2025-11-05T09:48:05.129Z</lastmod>
   </url>
 </urlset>
