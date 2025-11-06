@@ -21,6 +21,7 @@ website:
           - course/deep_learning/01_neural_networks_from_scratch.ipynb
           - course/deep_learning/02_nn_with_pytorch.ipynb
           - course/deep_learning/03_regularization_techniques.ipynb
+          - course/deep_learning/04_nn_layers.ipynb
       # - section: Applications
       #   href: course/applications/applications-index.ipynb
       #   contents:
