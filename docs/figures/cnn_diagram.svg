@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="684.3028"
+   height="242.85637"
+   viewBox="0 0 684.3028 242.85637"
+   version="1.1"
+   id="svg39"
+   sodipodi:docname="cnn_diagram.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs39" />
+  <sodipodi:namedview
+     id="namedview39"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="346.83587"
+     inkscape:cy="45.96194"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="3832"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg39" />
+  <g
+     id="g39"
+     transform="translate(-79,-199.16811)">
+    <rect
+       x="80"
+       y="250"
+       width="120"
+       height="120"
+       fill="#eaeaea"
+       stroke="#6b6b6b"
+       stroke-width="2"
+       rx="0"
+       ry="0"
+       opacity="1"
+       id="rect1" />
+    <rect
+       x="105"
+       y="290"
+       width="35"
+       height="35"
+       fill="#ffffff"
+       stroke="#6b6b6b"
+       stroke-width="2"
+       rx="0"
+       ry="0"
+       opacity="1"
+       id="rect2" />
+  </g>
+  <polygon
+     points="360,200 400,180 540,180 500,200 "
+     fill="#f0f0f0"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     opacity="1"
+     id="polygon3"
+     transform="translate(-110.15139,-134.16811)" />
+  <polygon
+     points="500,200 540,180 540,290 500,310 "
+     fill="#dcdcdc"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     opacity="1"
+     id="polygon4"
+     transform="translate(-110.15139,-134.16811)" />
+  <rect
+     x="249.8486"
+     y="65.831886"
+     width="140"
+     height="110"
+     fill="#eaeaea"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     rx="0"
+     ry="0"
+     opacity="1"
+     id="rect4" />
+  <rect
+     x="319.86783"
+     y="98.851082"
+     width="24.961639"
+     height="24.961639"
+     fill="#ffffff"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     rx="0"
+     ry="0"
+     opacity="1"
+     id="rect5" />
+  <polygon
+     points="760,190 730,210 640,210 670,190 "
+     fill="#f0f0f0"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     opacity="1"
+     id="polygon6"
+     transform="translate(-79,-129.16811)" />
+  <polygon
+     points="760,270 730,290 730,210 760,190 "
+     fill="#dcdcdc"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     opacity="1"
+     id="polygon7"
+     transform="translate(-79,-129.16811)" />
+  <rect
+     x="561"
+     y="80.831886"
+     width="90"
+     height="80"
+     fill="#eaeaea"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     rx="0"
+     ry="0"
+     opacity="1"
+     id="rect7" />
+  <rect
+     x="584.11438"
+     y="131.11501"
+     width="12.838642"
+     height="12.838642"
+     fill="#ffffff"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     rx="0"
+     ry="0"
+     opacity="1"
+     id="rect8" />
+  <rect
+     x="268.45407"
+     y="77.568428"
+     width="12.838642"
+     height="12.838642"
+     fill="#ffffff"
+     stroke="#6b6b6b"
+     stroke-width="2"
+     rx="0"
+     ry="0"
+     opacity="1"
+     id="rect8-8" />
+  <g
+     id="g45"
+     transform="translate(-96.775706,-100.66201)">
+    <text
+       x="283.40601"
+       y="114"
+       font-size="18px"
+       font-weight="bold"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text23">Convolution 1</text>
+    <text
+       x="282"
+       y="134"
+       font-size="16px"
+       font-weight="normal"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text24">16 kernels (5 × 5)</text>
+  </g>
+  <g
+     id="g47"
+     transform="translate(-79,-205.53563)">
+    <text
+       x="140"
+       y="420"
+       font-size="18px"
+       font-weight="normal"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text32">Input</text>
+    <text
+       x="140"
+       y="445"
+       font-size="16px"
+       font-weight="normal"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text33">(28 × 28 × 1)</text>
+  </g>
+  <text
+     x="339.29959"
+     y="214.46437"
+     font-size="18px"
+     font-weight="normal"
+     text-anchor="middle"
+     fill="#2b3a40"
+     font-family="Helvetica, Arial, sans-serif"
+     id="text34">16 channels</text>
+  <text
+     x="339.88058"
+     y="239.46437"
+     font-size="16px"
+     font-weight="normal"
+     text-anchor="middle"
+     fill="#2b3a40"
+     font-family="Helvetica, Arial, sans-serif"
+     id="text35">(24 × 24 × 16)</text>
+  <g
+     id="g46"
+     transform="translate(-63.937017,-205.53563)">
+    <text
+       x="685"
+       y="420"
+       font-size="18px"
+       font-weight="normal"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text36">2 channels</text>
+    <text
+       x="685"
+       y="445"
+       font-size="16px"
+       font-weight="normal"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text37">(22 × 22× 2)</text>
+  </g>
+  <path
+     id="line2"
+     style="stroke:#6b6b6b;stroke-width:2"
+     d="M 61,125.83189 268.45407,90.407069"
+     sodipodi:nodetypes="cc" />
+  <path
+     id="line3"
+     style="stroke:#6b6b6b;stroke-width:2"
+     d="M 61,90.831889 268.45407,77.568429"
+     sodipodi:nodetypes="cc" />
+  <path
+     id="line5"
+     style="stroke:#6b6b6b;stroke-width:2"
+     d="m 344.82947,123.81272 239.28491,20.14094"
+     sodipodi:nodetypes="cc" />
+  <path
+     id="line6"
+     style="stroke:#6b6b6b;stroke-width:2"
+     d="M 344.82947,98.851089 584.11438,131.115"
+     sodipodi:nodetypes="cc" />
+  <g
+     id="g45-7"
+     transform="translate(210.83989,-100.66201)">
+    <text
+       x="283.40601"
+       y="114"
+       font-size="18px"
+       font-weight="bold"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text23-0">Convolution 2</text>
+    <text
+       x="282"
+       y="134"
+       font-size="16px"
+       font-weight="normal"
+       text-anchor="middle"
+       fill="#2b3a40"
+       font-family="Helvetica, Arial, sans-serif"
+       id="text24-1">2 kernels (3 × 3)</text>
+  </g>
+</svg>
