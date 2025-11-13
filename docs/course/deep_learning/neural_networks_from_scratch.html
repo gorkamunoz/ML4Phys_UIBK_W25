@@ -322,7 +322,7 @@ div.csl-indent {
 <section id="sigmoid-perceptron" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Sigmoid perceptron</h1>
 <p>In this section we will implement a training algorithm for a single perceptron with sigmoid activation function. A perceptron looks like this:</p>
-<div class="cell" data-execution_count="58">
+<div class="cell">
 <details>
 <summary>Figure code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -442,7 +442,7 @@ W &amp; \leftarrow W - \frac{\eta }{N}\sum_{i=1}^N (y_i - \hat{y}_i) \hat{y}_i(1
 <section id="single-layer-neural-network" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Single layer Neural Network</h1>
 <p>Here, we will consider a neural network with a single hidden layer and sigmoid activation functions.</p>
-<div class="cell" data-execution_count="52">
+<div class="cell">
 <details>
 <summary>Figure code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot_nn(V<span class="op">=</span><span class="dv">5</span>, H <span class="op">=</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -552,7 +552,7 @@ Exercise
 <li>Hidden layer with <span class="math inline">\(h = 25\)</span> neurons.</li>
 <li>Ouptut layer with <span class="math inline">\(c = 1\)</span> neuron.</li>
 </ol>
-<div class="cell" data-execution_count="61">
+<div class="cell">
 <details>
 <summary>Figure code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_nn(V<span class="op">=</span><span class="dv">20</span>, H <span class="op">=</span> <span class="dv">10</span>, spacing <span class="op">=</span> <span class="dv">1</span>, figsize <span class="op">=</span> (<span class="dv">6</span>,<span class="dv">5</span>), alpha <span class="op">=</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -564,7 +564,7 @@ Exercise
 <section id="process-the-data" class="level3" data-number="3.0.1">
 <h3 data-number="3.0.1" class="anchored" data-anchor-id="process-the-data"><span class="header-section-number">3.0.1</span> Process the data</h3>
 <p>We start by importing the MNIST dataset</p>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>train_dataset <span class="op">=</span> datasets.MNIST(root<span class="op">=</span><span class="st">'./data'</span>, train<span class="op">=</span><span class="va">True</span>, download<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>test_dataset  <span class="op">=</span> datasets.MNIST(root<span class="op">=</span><span class="st">'./data'</span>, train<span class="op">=</span><span class="va">False</span>, download<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -582,7 +582,7 @@ Exercise
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>n_train, n_val, n_test <span class="op">=</span> x_train.shape[<span class="dv">0</span>], x_val.shape[<span class="dv">0</span>], x_test.shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s have a look at some examples to get a better idea about the task.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">10</span></span>
@@ -630,7 +630,7 @@ Exercise
 <li>Normalize them <span class="math inline">\(\mathbf{x}_i \to \frac{\mathbf{x}_i - \text{mean}(\mathbf{x}_i)}{\text{std}(\mathbf{x})}\)</span></li>
 <li>Because output of our network comes from a simgoid activation function in the range <span class="math inline">\((0, 1)\)</span>, we will bring the image labels <span class="math inline">\(y \in \{0,1,2,\dots,9\}\)</span> to the <span class="math inline">\((0,1)\)</span> range dividing by 10.</li>
 </ol>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten the images</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> x_train.reshape(n_train, <span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X_val <span class="op">=</span> x_val.reshape(n_val, <span class="op">-</span><span class="dv">1</span>)</span>
@@ -653,7 +653,7 @@ Exercise
 <section id="define-the-model" class="level3" data-number="3.0.2">
 <h3 data-number="3.0.2" class="anchored" data-anchor-id="define-the-model"><span class="header-section-number">3.0.2</span> Define the model</h3>
 <p>Let’s define now the neural network parameters</p>
-<div class="cell" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NN parameters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> X_train.shape[<span class="dv">1</span>] <span class="co"># number of input neurons</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="dv">21</span>               <span class="co"># number of hidden neurons</span></span>
@@ -672,7 +672,7 @@ Exercise
 <p>Using the theoretical expression we found above, compute the forward and backward passes for the single layer NN.</p>
 </div>
 </div>
-<div class="cell" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Your code here</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(x):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Computes the sigmoid function of an input np.array'''</span></span>
@@ -688,7 +688,7 @@ Exercise
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grad_w_1, grad_b_1, grad_w_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="11">
+<div class="cell">
 <details>
 <summary>Solution</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forward(x, w_1, b_1, w_2):</span>
@@ -717,7 +717,7 @@ Exercise
 <section id="train-the-model" class="level3" data-number="3.0.3">
 <h3 data-number="3.0.3" class="anchored" data-anchor-id="train-the-model"><span class="header-section-number">3.0.3</span> Train the model</h3>
 <p>We can now train the model!</p>
-<div class="cell" data-execution_count="12">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Training parameters</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="dv">50</span>      <span class="co"># learning rate</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_epoch <span class="op">=</span> <span class="dv">500</span> <span class="co"># training epochs</span></span>
@@ -728,7 +728,7 @@ Exercise
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>w_2 <span class="op">=</span> <span class="dv">1</span><span class="op">*</span>(np.random.rand(h, c) <span class="op">-</span> <span class="fl">0.5</span>)  </span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>b_1 <span class="op">=</span> <span class="dv">1</span><span class="op">*</span>(np.random.rand(h)   <span class="op">-</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="13">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>loss_train_vs_epoch <span class="op">=</span> []</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>loss_val_vs_epoch <span class="op">=</span> []</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -756,7 +756,7 @@ Exercise
 </script>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train and validation loss of </span><span class="sc">{</span>loss_train<span class="sc">:.5f}</span><span class="ss"> and </span><span class="sc">{</span>loss_val<span class="sc">:.5f}</span><span class="ss">, respectively"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -765,7 +765,7 @@ Exercise
 <pre><code>Train and validation loss of 0.00625 and 0.00735, respectively</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="15">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
@@ -783,7 +783,7 @@ Exercise
 </div>
 </div>
 <p>Now, we can look at the performance over unseen data from the test set.</p>
-<div class="cell" data-execution_count="16">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Y_pred, _, _, _ <span class="op">=</span> forward(X_test, w_1, b_1, w_2)</span>
@@ -796,7 +796,7 @@ Exercise
 </div>
 <p>The model seems to generalize fairly well, as the performance is comparable to the one obtained in the training set. Indeed, looking at the training losses, we see that the model is barely overfitting as there is almost no difference between the training and validation loss. This is mainly due to the simplicity of the model that we are considering.</p>
 <p>We can also pretend for a moment that this is a classification task. This is definitely not how you would frame a classification problem, but we can assign prediction intervals to the MNIST labels and see how we would do.</p>
-<div class="cell" data-execution_count="18">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train set prediction</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pred_train, _, _, _ <span class="op">=</span> forward(X_train, w_1, b_1, w_2)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pred_train <span class="op">=</span> np.around(<span class="dv">10</span><span class="op">*</span>pred_train).astype(<span class="bu">int</span>).squeeze()</span>
@@ -847,7 +847,7 @@ Note
 </div>
 </div>
 <p>Let’s see if we can get a better understanding of the model by looking at some predictions:</p>
-<div class="cell" data-execution_count="20">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">5</span></span>
@@ -1020,7 +1020,7 @@ Exercise
 <p><strong>Bonus:</strong> Implement the Adam optimizer in the previous loop.</p>
 </div>
 </div>
-<div class="cell" data-execution_count="34">
+<div class="cell">
 <details>
 <summary>Solution (pseudocode)</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the batch size and calculate the number of batches</span></span>
