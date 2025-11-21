@@ -22,10 +22,10 @@ website:
           - course/deep_learning/02_nn_with_pytorch.ipynb
           - course/deep_learning/03_regularization_techniques.ipynb
           - course/deep_learning/04_nn_layers.ipynb
-      # - section: Applications
-      #   href: course/applications/applications-index.ipynb
-      #   contents:
-      #     - course/applications/applications-cv.ipynb
+      - section: 4. Reinforcement learning
+        contents:
+          - course/RL/01_intro_to_rl.ipynb
+          - course/RL/02_mdp_tabular.ipynb
       #     - course/applications/applications-nlp.ipynb
       #     - course/applications/applications-tabular.ipynb
       # - section: Deep Learning 
