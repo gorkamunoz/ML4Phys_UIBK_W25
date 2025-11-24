@@ -25,7 +25,6 @@ website:
       - section: 4. Reinforcement learning
         contents:
           - course/RL/01_intro_to_rl.ipynb
-          - course/RL/02_mdp_tabular.ipynb
       #     - course/applications/applications-nlp.ipynb
       #     - course/applications/applications-tabular.ipynb
       # - section: Deep Learning 
