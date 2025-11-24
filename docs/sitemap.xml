@@ -1,67 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/homework_resources/HW3/ion trap environment.html</loc>
+    <lastmod>2025-11-24T08:45:24.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/homework_resources/HW3/reinforcement learning for ion traps.html</loc>
+    <lastmod>2025-11-24T08:45:25.204Z</lastmod>
+  </url>
+  <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/logistic_regression.html</loc>
-    <lastmod>2025-11-14T07:31:59.502Z</lastmod>
+    <lastmod>2025-11-24T08:45:26.330Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/linear_regression.html</loc>
-    <lastmod>2025-11-14T07:32:01.453Z</lastmod>
+    <lastmod>2025-11-24T08:45:28.279Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/polynomial_fit.html</loc>
-    <lastmod>2025-11-14T07:32:02.802Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-index.html</loc>
-    <lastmod>2025-11-14T07:32:03.082Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-tabular.html</loc>
-    <lastmod>2025-11-14T07:32:03.487Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-cv.html</loc>
-    <lastmod>2025-11-14T07:32:04.222Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/applications-nlp.html</loc>
-    <lastmod>2025-11-14T07:32:05.190Z</lastmod>
+    <lastmod>2025-11-24T08:45:29.642Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/application-genqc.html</loc>
-    <lastmod>2025-11-14T07:32:05.589Z</lastmod>
+    <lastmod>2025-11-24T08:45:30.024Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/RL/intro_to_rl.html</loc>
+    <lastmod>2025-11-24T08:45:30.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/RL/mdp_tabular.html</loc>
+    <lastmod>2025-11-24T08:45:30.687Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/index.html</loc>
-    <lastmod>2025-11-14T07:32:05.863Z</lastmod>
+    <lastmod>2025-11-24T08:45:30.923Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/neural_networks_from_scratch.html</loc>
-    <lastmod>2025-11-14T07:32:06.475Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/Untitled.html</loc>
-    <lastmod>2025-11-14T07:32:06.726Z</lastmod>
+    <lastmod>2025-11-24T08:45:31.556Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/regularization_techniques.html</loc>
-    <lastmod>2025-11-14T07:32:08.099Z</lastmod>
+    <lastmod>2025-11-24T08:45:32.828Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/nn_with_pytorch.html</loc>
-    <lastmod>2025-11-14T07:32:09.365Z</lastmod>
+    <lastmod>2025-11-24T08:45:34.041Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/nn_layers.html</loc>
-    <lastmod>2025-11-14T07:32:10.057Z</lastmod>
+    <lastmod>2025-11-24T08:45:35.811Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/installation_guide.html</loc>
-    <lastmod>2025-11-14T07:32:10.318Z</lastmod>
+    <lastmod>2025-11-24T08:45:36.067Z</lastmod>
   </url>
   <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/index.html</loc>
-    <lastmod>2025-11-14T07:32:10.570Z</lastmod>
+    <lastmod>2025-11-24T08:45:36.325Z</lastmod>
   </url>
 </urlset>

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Borja Requena">
+<meta name="author" content="Borja Requena and Gorka Muñoz-Gil">
 
 <title>ML in classical and quantum physics UIBK W25 - NN with PyTorch</title>
 <style>
@@ -232,6 +232,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">4. Reinforcement learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/RL/intro_to_rl.html" class="sidebar-item-text sidebar-link">Basics of RL</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/RL/mdp_tabular.html" class="sidebar-item-text sidebar-link">MDPs and tabular methods</a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -272,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Borja Requena </p>
+             <p>Borja Requena and Gorka Muñoz-Gil </p>
           </div>
   </div>
     
@@ -289,13 +309,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="1"><span class="header-section-number">1</span> PyTorch basics</h1>
 <p><a href="https://pytorch.org">PyTorch</a> is an automatic differentiation framework that, essentially, is your <a href="https://numpy.org">NumPy</a> for machine learning and anything that involves exact derivatives. PyTorch natively supports hardware accelerators, such as GPUs, that can significantly speed up matrix multiplication operations, as well as distributed computing to handle large workloads.</p>
 <p>The main element of PyTorch is a tensor, which behaves very similarly to NumPy arrays.</p>
-<div class="cell">
+<div class="cell" data-execution_count="395">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a_tensor <span class="op">=</span> torch.tensor([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>])</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>b_tensor <span class="op">=</span> torch.tensor([<span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>])</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(a_tensor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="395">
 <pre><code>torch.Tensor</code></pre>
 </div>
 </div>
@@ -894,12 +914,12 @@ Exercise
 </div>
 <div class="callout-body-container callout-body">
 <p>Using the tools you have learned in this notebook, train a simple neural network to classify anomalous diffusion trajectories. To create the dataset, you will first need to install the <code>andi_datasets</code> library via <code>pip install andi-datasets</code>. You can then use:</p>
-<div class="cell">
+<div class="cell" data-execution_count="396">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> andi_datasets.datasets_theory <span class="im">import</span> datasets_theory</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> andi_datasets.utils_trajectories <span class="im">import</span> normalize</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>DT <span class="op">=</span> datasets_theory()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="397">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> DT.create_dataset(T <span class="op">=</span> <span class="dv">100</span>, N_models <span class="op">=</span> <span class="dv">3000</span>, exponents <span class="op">=</span> [<span class="fl">0.2</span>], models <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>])</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">'cuda'</span> <span class="co"># Choose your device!</span></span>
@@ -915,7 +935,7 @@ Exercise
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="398">
 <details>
 <summary>Solution</summary>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.8</span><span class="op">*</span>trajs_dataset.shape[<span class="dv">0</span>])</span>
@@ -928,7 +948,7 @@ Exercise
 </details>
 </div>
 <p>Now let’s create the <code>Dataloaders</code> with <code>pytorch</code></p>
-<div class="cell">
+<div class="cell" data-execution_count="399">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> TensorDataset</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create TensorDatasets</span></span>
@@ -944,7 +964,7 @@ Exercise
 <p><strong>Bonus:</strong> look into the <code>pytorch</code> documentation and implement the <code>Adagrad</code> and <code>Adam</code> optimizers. Compare the results, which one gives a better results?</p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="400">
 <details>
 <summary>Solution - Model architecture</summary>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FullyConnected_andi(nn.Module):</span>
@@ -969,7 +989,7 @@ Exercise
 <span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="401">
 <details>
 <summary>Solution - Training loop</summary>
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>n_epochs <span class="op">=</span> <span class="dv">500</span></span>
@@ -1012,7 +1032,7 @@ Exercise
 </details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"26f776124b5d4e16a990ac14eb83db99","version_major":2,"version_minor":0}
+{"model_id":"ae8b61b9e72246cb81d2f0ac31a4b605","version_major":2,"version_minor":0}
 </script>
 </div>
 </div>
