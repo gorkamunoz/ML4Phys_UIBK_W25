@@ -252,18 +252,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#examples" id="toc-examples" class="nav-link active" data-scroll-target="#examples"><span class="toc-section-number">0.1</span>  Examples</a>
+  <li><a href="#examples" id="toc-examples" class="nav-link active" data-scroll-target="#examples"><span class="toc-section-number">1</span>  Examples</a></li>
+  <li><a href="#basic-elements" id="toc-basic-elements" class="nav-link" data-scroll-target="#basic-elements"><span class="toc-section-number">2</span>  Basic elements</a></li>
+  <li><a href="#multi-armed-bandits" id="toc-multi-armed-bandits" class="nav-link" data-scroll-target="#multi-armed-bandits"><span class="toc-section-number">3</span>  Multi-armed bandits</a>
   <ul class="collapse">
-  <li><a href="#learning-to-navigate" id="toc-learning-to-navigate" class="nav-link" data-scroll-target="#learning-to-navigate"><span class="toc-section-number">0.1.1</span>  Learning to navigate</a></li>
-  <li><a href="#learning-to-control" id="toc-learning-to-control" class="nav-link" data-scroll-target="#learning-to-control"><span class="toc-section-number">0.1.2</span>  Learning to control</a></li>
-  <li><a href="#learning-to-play" id="toc-learning-to-play" class="nav-link" data-scroll-target="#learning-to-play"><span class="toc-section-number">0.1.3</span>  Learning to play</a></li>
-  <li><a href="#learning-to-create-quantum-experiments" id="toc-learning-to-create-quantum-experiments" class="nav-link" data-scroll-target="#learning-to-create-quantum-experiments"><span class="toc-section-number">0.1.4</span>  Learning to create quantum experiments</a></li>
-  </ul></li>
-  <li><a href="#basic-elements" id="toc-basic-elements" class="nav-link" data-scroll-target="#basic-elements"><span class="toc-section-number">1</span>  Basic elements</a></li>
-  <li><a href="#multi-armed-bandits" id="toc-multi-armed-bandits" class="nav-link" data-scroll-target="#multi-armed-bandits"><span class="toc-section-number">2</span>  Multi-armed bandits</a>
-  <ul class="collapse">
-  <li><a href="#non-stationary-problems" id="toc-non-stationary-problems" class="nav-link" data-scroll-target="#non-stationary-problems"><span class="toc-section-number">2.1</span>  Non-stationary problems</a></li>
-  <li><a href="#exploitation-vs.-exploration" id="toc-exploitation-vs.-exploration" class="nav-link" data-scroll-target="#exploitation-vs.-exploration"><span class="toc-section-number">2.2</span>  Exploitation vs.&nbsp;exploration</a></li>
+  <li><a href="#exploitation-vs.-exploration" id="toc-exploitation-vs.-exploration" class="nav-link" data-scroll-target="#exploitation-vs.-exploration"><span class="toc-section-number">3.1</span>  Exploitation vs.&nbsp;exploration</a></li>
+  <li><a href="#non-stationary-problems" id="toc-non-stationary-problems" class="nav-link" data-scroll-target="#non-stationary-problems"><span class="toc-section-number">3.2</span>  Non-stationary problems</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/gorkamunoz/Machine-Learning-Course/blob/master/nbs/course/RL/01_intro_to_rl.ipynb" class="toc-action">View source</a></p></div></div></nav>
@@ -302,11 +296,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Schematic representation of the agent-environment interaction in RL.</figcaption><p></p>
 </figure>
 </div>
-<section id="examples" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="examples"><span class="header-section-number">0.1</span> Examples</h2>
+<section id="examples" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Examples</h1>
 <p>Before going in the details of the algorithm, it is useful to understand what can be done with RL.</p>
-<section id="learning-to-navigate" class="level3" data-number="0.1.1">
-<h3 data-number="0.1.1" class="anchored" data-anchor-id="learning-to-navigate"><span class="header-section-number">0.1.1</span> Learning to navigate</h3>
+<p><strong>Learning to navigate</strong></p>
 <p>The aim of the agent is to reach a certain target state through a simple or complex environment. The state of the agent is simply its position, its actions relate to its motion, and a positive reward is given when reaching the target.</p>
 <div id="fig-frozen" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -314,9 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: Frozen Lake environment. Credit: <a href="https://gymnasium.farama.org/environments/toy_text/frozen_lake/">Farama Foundation</a></figcaption><p></p>
 </figure>
 </div>
-</section>
-<section id="learning-to-control" class="level3" data-number="0.1.2">
-<h3 data-number="0.1.2" class="anchored" data-anchor-id="learning-to-control"><span class="header-section-number">0.1.2</span> Learning to control</h3>
+<p><strong>Learning to control</strong></p>
 <p>Here the agent’s goal is control the environment to again reach a target state. For instance, the agent may have access to the control of different parts of the environment (its actions). A reward is given when the control is successful, i.e.&nbsp;we reach the target.</p>
 <div id="fig-luna" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -324,13 +315,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Figure&nbsp;3: Lunar Lander environment. Credit: <a href="https://gymnasium.farama.org/environments/box2d/lunar_lander/">Farama Foundation</a></figcaption><p></p>
 </figure>
 </div>
-</section>
-<section id="learning-to-play" class="level3" data-number="0.1.3">
-<h3 data-number="0.1.3" class="anchored" data-anchor-id="learning-to-play"><span class="header-section-number">0.1.3</span> Learning to play</h3>
+<p><strong>Learning to play</strong></p>
 <p>The same paradigm is easily applicable to games! Indeed, some of the biggest breakthroughs in RL came from its application to the game <a href="https://www.nature.com/articles/nature16961">Go</a> and later to <a href="https://www.science.org/doi/10.1126/science.aar6404">chess</a>. There is a very cool documentary about these developments in <a href="https://www.youtube.com/watch?v=WXuK6gekU1Y">Youtube</a>.</p>
-</section>
-<section id="learning-to-create-quantum-experiments" class="level3" data-number="0.1.4">
-<h3 data-number="0.1.4" class="anchored" data-anchor-id="learning-to-create-quantum-experiments"><span class="header-section-number">0.1.4</span> Learning to create quantum experiments</h3>
+<p><strong>Learning to create quantum experiments</strong></p>
 <p>As you may already guess, RL has a lot of applications in Physics. For instance, an agent can learn to place different optical devices (its actions) into a quantum optical table to reach a certain quantum state!</p>
 <div id="fig-quantum" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -339,9 +326,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
-</section>
-<section id="basic-elements" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Basic elements</h1>
+<section id="basic-elements" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Basic elements</h1>
 <p>All previous problems share almost the same elements. We have already talked about actions and states, and will come back to these a bit later. Aside of these, we identify four main subelements:</p>
 <ul>
 <li><strong>Policy:</strong> ensemble of rules that set the behaviour of the agent.</li>
@@ -350,9 +336,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Model:</strong> optional, aims to mimic the behaviour of the environment.</li>
 </ul>
 </section>
-<section id="multi-armed-bandits" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Multi-armed bandits</h1>
-<p>Multi-armed bandits (MAB) is a common toy model in RL. The setup is as follows: we have a <span class="math inline">\(k\)</span>-armed bandit, defining our <span class="math inline">\(k\)</span> actions. Each arm has a given probability of returning a reward <span class="math inline">\(R=1\)</span>. From this probability, we have the expected reward of each arm, hence of each action. We typically refer to this as the <em>value</em> of each action, and define the value function</p>
+<section id="multi-armed-bandits" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Multi-armed bandits</h1>
+<p>Multi-armed bandits (MAB) is a common toy model in RL. The setup is as follows: we have a <span class="math inline">\(k\)</span>-armed bandit, defining our <span class="math inline">\(k\)</span> actions. Each arm has a given probability distribution of reward, typically a normal distribution <span class="math inline">\(R_k=\mathcal{N}(\mu_k, \sigma_k)\)</span>. From this probability, we have the expected reward of each arm, hence of each action. We typically refer to this as the <em>value</em> of each action, and define the value function</p>
 <p><span class="math display">\[\begin{equation}
 q^*(a) = \mathbb{E}[ R_t | A_t = a],
 \end{equation}\]</span></p>
@@ -361,16 +347,10 @@ q^*(a) = \mathbb{E}[ R_t | A_t = a],
 Q_t(a) = \frac{\text{sum of rewards received when doing action } a}{\text{number of times we took action } a} = \frac{\sum_{i=1}^{t-1} R_i \delta (A_i -a)}{\sum_{i=1}^{t-1}\delta(A_i-a)}
 \end{equation}\]</span></p>
 <p>From this value function, we can construct our <em>policy</em>, by for instance taking <span class="math inline">\(A_t = \text{argmax}_a Q_t(a)\)</span>. Rather than calculating this equation at each time step, we can rather update it incrementally as follows: <span class="math display">\[\begin{equation}
-Q_{n+1}(a) = Q_n(a) + \frac{1}{n} (R_n(a) - Q_n(a)).
+Q_{t+1}(a) = Q_t(a) + \frac{1}{t} (R_t(a) - Q_t(a)).
 \end{equation}\]</span></p>
-<section id="non-stationary-problems" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="non-stationary-problems"><span class="header-section-number">2.1</span> Non-stationary problems</h2>
-<p>We often want to consider non-stationary problems, where the value of each action may change over time. In this case, we can use a constant step-size parameter <span class="math inline">\(\alpha\)</span> to update our value function: <span class="math display">\[\begin{equation}
-Q_{n+1}(a) = Q_n(a) + \alpha (R_n(a) - Q_n(a)),
-\end{equation}\]</span> where the factor <span class="math inline">\(\alpha\)</span> determines how fast we want to adapt to changes in the environment: if <span class="math inline">\(\alpha\)</span> is small, updates are conservative and rely heavily on past estimates. On the other hand, if <span class="math inline">\(\alpha\)</span> is large (close to 1), the estimate rapidly adapts to the most recent reward.</p>
-</section>
-<section id="exploitation-vs.-exploration" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="exploitation-vs.-exploration"><span class="header-section-number">2.2</span> Exploitation vs.&nbsp;exploration</h2>
+<section id="exploitation-vs.-exploration" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="exploitation-vs.-exploration"><span class="header-section-number">3.1</span> Exploitation vs.&nbsp;exploration</h2>
 <p>The policy above “exploits” the learned knowledge. However, this may be counterproductive because the agent’s knowledge of the action values is not perfect. If the agent happens to find a good, but not optimal, action early on, a purely greedy policy will stick to it forever, never discovering the truly best action. To avoid this, the agent must also explore. It must sometimes try actions that it does not believe are the best. This allows it to improve its estimates of the values of all actions and increases the chances of finding the optimal one. This is the fundamental exploration-exploitation dilemma in reinforcement learning: the agent must balance exploiting its current knowledge to get high rewards with exploring to gain new knowledge that could lead to even higher rewards in the future.</p>
 <p>To account for this, we consider the <span class="math inline">\(\epsilon\)</span>-greedy policy, which consists in taking the action <span class="math inline">\(A_t = \text{argmax}_a Q_t(a)\)</span> with probability <span class="math inline">\(1-\epsilon\)</span>, and a random action with probability <span class="math inline">\(\epsilon\)</span>. This simple modification allows the agent to explore the environment, while still exploiting its knowledge most of the time. More formally,</p>
 <p><span class="math display">\[\begin{equation}
@@ -388,7 +368,7 @@ Exercise
 <div class="callout-body-container callout-body">
 <p>Let’s put the previous in practice! Here is a function implementing a multi-armed bandit environment. Complete the code to create an agent that uses the <span class="math inline">\(\epsilon\)</span>-greedy policy to interact with the environment and learn the value function <span class="math inline">\(Q(a)\)</span> for each action. Train your agent over <span class="math inline">\(2000\)</span> episodes with three different epsilon values: [0, 0.01, 0.1]. Plot a time average of the reward over time for each epsilon value to see how exploration affects learning.</p>
 <p><strong>Bonus:</strong> Get the optimal action from the environment (the one with higher <code>mean_r</code>) and plot the percentage of times the agent selects this action over time for each epsilon value.</p>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MAB:</span>
@@ -418,6 +398,68 @@ Exercise
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># To do an action over the environment and get the reward use:</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>action <span class="op">=</span> <span class="dv">1</span> <span class="co"># As we have 10 bandits, action must be a number between 0 and 9</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>reward <span class="op">=</span> mab_environment.get_reward(action)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="non-stationary-problems" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="non-stationary-problems"><span class="header-section-number">3.2</span> Non-stationary problems</h2>
+<p>We often want to consider non-stationary problems, where the value of each action may change over time. In this case, we can use a constant step-size parameter <span class="math inline">\(\alpha\)</span> to update our value function: <span class="math display">\[\begin{equation}
+Q_{t+1}(a) = Q_t(a) + \alpha (R_t(a) - Q_t(a)),
+\end{equation}\]</span> where the factor <span class="math inline">\(\alpha\)</span> determines how fast we want to adapt to changes in the environment: if <span class="math inline">\(\alpha\)</span> is small, updates are conservative and rely heavily on past estimates. On the other hand, if <span class="math inline">\(\alpha\)</span> is large (close to 1), the estimate rapidly adapts to the most recent reward.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let’s do the same as bove but now with a MAB that changes its reward function every a certain amount of function calls. Do the exploration with a fixed <span class="math inline">\(\epsilon\)</span> (for instance the best one from the previous exercise), but now tuning the <span class="math inline">\(\alpha\)</span>, from <span class="math inline">\(10^{-2}\)</span> to <span class="math inline">\(1\)</span>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MAB_nonstationary:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' Creates a multiarmed bandit where each bandit outputs a reward coming </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    from a Gaussian distribution. '''</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_b, steps_reset <span class="op">=</span> <span class="dv">500</span>):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.N <span class="op">=</span> num_b <span class="co"># Number of bandits</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.reset_reward()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.steps_reset <span class="op">=</span> steps_reset</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reset_reward(<span class="va">self</span>):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.func_call <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mean_r <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, <span class="va">self</span>.N) <span class="co"># Reward probability of each bandit</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_reward(<span class="va">self</span>, action):</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.func_call <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.func_call <span class="op">==</span> <span class="va">self</span>.steps_reset:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.reset_reward()</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Given action, outputs a reward based on the probability of success of bandit</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> action <span class="op">&gt;</span> <span class="va">self</span>.N<span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">'Bandit number'</span><span class="op">+</span><span class="bu">str</span>(action)<span class="op">+</span><span class="st">' does not exists!'</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>: </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>          reward <span class="op">=</span> np.random.normal(<span class="va">self</span>.mean_r[action],<span class="dv">1</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> reward</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># To create the environment use:</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>number_bandits <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>mab_environment <span class="op">=</span> MAB_nonstationary(num_b <span class="op">=</span> number_bandits)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># To do an action over the environment and get the reward use:</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>action <span class="op">=</span> <span class="dv">1</span> <span class="co"># As we have 10 bandits, action must be a number between 0 and 9</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>reward <span class="op">=</span> mab_environment.get_reward(action)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

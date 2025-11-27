@@ -257,6 +257,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#elements-of-a-mdp" id="toc-elements-of-a-mdp" class="nav-link" data-scroll-target="#elements-of-a-mdp"><span class="toc-section-number">1.1</span>  Elements of a MDP</a></li>
   <li><a href="#value-functions-and-bellman-equations" id="toc-value-functions-and-bellman-equations" class="nav-link" data-scroll-target="#value-functions-and-bellman-equations"><span class="toc-section-number">1.2</span>  Value functions and Bellman equations</a></li>
   </ul></li>
+  <li><a href="#value-based-methods" id="toc-value-based-methods" class="nav-link" data-scroll-target="#value-based-methods"><span class="toc-section-number">2</span>  Value-based methods</a>
+  <ul class="collapse">
+  <li><a href="#q-learning" id="toc-q-learning" class="nav-link" data-scroll-target="#q-learning"><span class="toc-section-number">2.1</span>  Q-learning</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">2.1.1</span>  Example</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/gorkamunoz/Machine-Learning-Course/blob/master/nbs/course/RL/02_mdp_tabular.ipynb" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -308,15 +315,10 @@ p(s_{t+1}|s_t, s_{t-1}, \dots, s_0) = p(s_{t+1}|s_t)
 <li>A set of actions <span class="math inline">\(A\)</span>.</li>
 <li>A transition probability function <span class="math inline">\(p(s',r|s,a)\)</span> representing the probability of reaching state <span class="math inline">\(s'\)</span> and receiving reward <span class="math inline">\(r\)</span> when taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>.</li>
 <li>A reward function <span class="math inline">\(R(s,a)\)</span> representing the reward received when taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>.</li>
-<li>A discount factor <span class="math inline">\(\gamma \in [0,1]\)</span> which represents the difference in importance between future and past.</li>
 </ul>
 <p>From this, the entire dynamics of the MDP are characterized. In particular, we can calculate the <em>state-transition</em> probability as</p>
 <p><span class="math display">\[\begin{equation}
 p(s'|s,a) = \sum_{r} p(s',r|s,a)
-\end{equation}\]</span></p>
-<p>More importantly, we can define the <em>expected reward</em> when taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span> as</p>
-<p><span class="math display">\[\begin{equation}
-r(s,a) = \mathbb{E}[R_{t+1}|S_t=s, A_t=a] = \sum_{r} r \sum_{s'} p(s',r|s,a).
 \end{equation}\]</span></p>
 <p>Coming back to our RL’s ingredients, we know that the RL agent is equipped with a policy <span class="math inline">\(\pi(a|s)\)</span>, defining the probability of taking action <span class="math inline">\(a\)</span> when in state <span class="math inline">\(s\)</span>. The interaction of the agent with the environment generate trajectories</p>
 <p><span class="math display">\[\begin{equation}
@@ -344,7 +346,7 @@ v_\pi(s) = \mathbb{E} \bigl[ G_t \mid S_t = s, \pi \bigr] = \mathbb{E}\bigl[ \su
 <p><span class="math display">\[\begin{equation}
 q_\pi(s,a) = \mathbb{E} \bigl[ G_t \mid S_t = s, A_t = a, \pi \bigr]= \mathbb{E}\bigl[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \mid S_t = s, A_t = a , \pi \bigr].
 \end{equation}\]</span></p>
-<p>These concepts introduce a partial ordering between policies. A policy <span class="math inline">\(\pi\)</span> is better than another policy <span class="math inline">\(\pi'\)</span> if it yields a higher return. Formally, <span class="math inline">\(\pi &gt; \pi'\)</span> iff <span class="math inline">\(V_\pi(s) &gt; V_{\pi'}(s)\)</span> for all <span class="math inline">\(s \in S\)</span>, i.e.&nbsp;<span class="math inline">\(q^*=\max_\pi v_\pi(s)\)</span>, and similarly for <span class="math inline">\(q\)</span>. Therefore, the optimal policy <span class="math inline">\(\pi^*\)</span> is the one that is better than or equal to every other policy. In other words, the optimal policy is the policy that maximizes the value function. Using the recursive nature of the value functions, we can write the <em>Bellman optimality equations</em>:</p>
+<p>These concepts introduce a partial ordering between policies. A policy <span class="math inline">\(\pi\)</span> is better than another policy <span class="math inline">\(\pi'\)</span> if it yields a higher return. Formally, <span class="math inline">\(\pi &gt; \pi'\)</span> iff <span class="math inline">\(V_\pi(s) &gt; V_{\pi'}(s)\)</span> for all <span class="math inline">\(s \in S\)</span>, i.e.&nbsp;<span class="math inline">\(v^*=\max_\pi v_\pi(s)\)</span>, and similarly for <span class="math inline">\(q\)</span>. Therefore, the optimal policy <span class="math inline">\(\pi^*\)</span> is the one that is better than or equal to every other policy. In other words, the optimal policy is the policy that maximizes the value function. Using the recursive nature of the value functions, we can write the <em>Bellman optimality equations</em>:</p>
 <p><span class="math display">\[\begin{equation}
 v^*(s) = \max_{a} \sum_{s',r} p(s',r|s,a) \bigl[ r + \gamma v^*(s') \bigr]
 \end{equation}\]</span></p>
@@ -354,11 +356,178 @@ q^*(s,a) = \sum_{s',r} p(s',r|s,a) \bigl[ r + \gamma \max_{a'} q^*(s',a') \bigr]
 <div class="{callout-important}">
 <p>Value-based methods revolve around the Bellman equations, using them to estimate value functions and derive improved policies, and will be the focus through this course. <strong>However,</strong> many other approaches exist: from policy-based methods, which directly optimize the policy, to actor–critic methods, which combine value estimation with policy optimization or model-based variants further incorporate an explicit model of the environment’s dynamics to plan ahead and improve decision making. You can find details about this in Sec. 6 of the <a href="https://arxiv.org/pdf/2204.04198#page=143">Machine Learning in Quantum Sciences book</a></p>
 </div>
+</section>
+</section>
+<section id="value-based-methods" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Value-based methods</h1>
+<p>In value-based RL, the goal is to obtain the optimal policy <span class="math inline">\(\pi^∗(a|s)\)</span> by learning the optimal value functions. This way, we start with an initial estimation of the value function for every state, <span class="math inline">\(V_\pi(s)\)</span>, or state−action pairs, <span class="math inline">\(Q_\pi(s, a)\)</span>. Then, we progressively update them with the experience gathered by the agent following its policy.</p>
+<p>A simple approach to value-based RL would be to sample a trajetory <span class="math inline">\(\tau\)</span> as we did above, compute its return <span class="math inline">\(G_\tau\)</span> and update our value function estimation along every visited state <span class="math inline">\(s_t\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+V_\pi(s_t) \leftarrow V_\pi(s_t) + \eta \bigl( G_\tau - V_\pi(s_t) \bigr)
+\end{equation}\]</span></p>
+<p>However, with this approach we need to wait until the end of the episode to compute the return <span class="math inline">\(G_\tau\)</span>… Instead, temporal-difference (TD) learning methods allow us to update our value function estimation at every step, without waiting until the end of the episode. This is done by using the observed reward and the estimated value of the next state to compute a TD target:</p>
+<p><span class="math display">\[\begin{equation}
+V_\pi(s_t) \leftarrow V_\pi(s_t) + \eta \bigl[ r_{t+1} + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \bigr]
+\end{equation}\]</span></p>
+<p>where the term in brackets is typically called the TD error. The previous equation is known as the TD(0) update rule. Similarly, we can write a TD update rule for the action-value function:</p>
+<p><span class="math display">\[\begin{equation}
+Q_\pi(s_t, a_t) \leftarrow Q_\pi(s_t, a_t) + \eta \bigl[ r_{t+1} + \gamma Q_\pi(s_{t+1}, a_{t+1}) - Q_\pi(s_t, a_t) \bigr]
+\end{equation}\]</span></p>
+<p>From the previous equation emerge two different approaches to value-based RL: SARSA and Q-learning (see <a href="http://incompleteideas.net/book/the-book-2nd.html">THE RL book</a> by Sutton and Barto for more). While very similar, they have a very important different: in SARSA, the update uses the action <span class="math inline">\(a_{t+1}\)</span> actually taken by the agent in state <span class="math inline">\(s_{t+1}\)</span> (i.e.&nbsp;exactly the previous equation or similar versions), while in Q-learning, the update uses the action that maximizes the action-value function in state <span class="math inline">\(s_{t+1}\)</span>. This makes Q-learning an <em>off-policy</em> method, while SARSA is an <em>on-policy</em> one. Let’s see in detail the former, as it is one of the most popular RL algorithms.</p>
+<section id="q-learning" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="q-learning"><span class="header-section-number">2.1</span> Q-learning</h2>
+<p>Most of the TD algorithms that we introduce in the previous section learn the value functions for their given policies, mainly ε-greedy policies. These include exploratory random actions that have an impact on the learned value functions. Therefore, the policy determines the result, and we must adjust ε during the training process to ensure their proper convergence toward the optimal value functions. However, due to its <strong>off-policy</strong> nature, Q-learning always learns the optimal action-value function regardless of the policy followed during the training.</p>
+<p>Given an initial <span class="math inline">\(Q(s,a)\)</span>, the Q-learning algorithm updates it at each time step <span class="math inline">\(t\)</span> according to the following rule:</p>
+<p><span class="math display">\[\begin{equation}
+Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \eta \bigl[ r_{t+1} + \gamma \max_{a'} Q(s_{t+1},a') - Q(s_t,a_t) \bigr],
+\end{equation}\]</span> where <span class="math inline">\(\eta\)</span> is the learning rate, <span class="math inline">\(r_{t+1}\)</span> is the reward received after taking action <span class="math inline">\(a_t\)</span> in state <span class="math inline">\(s_t\)</span>, and <span class="math inline">\(\gamma\)</span> is the discount factor.</p>
+<p>This method is guaranteed to converge to the optimal action-value function as long as all possible state−action pairs continue to be updated. This is a necessary condition for all the algorithms that converge to the optimal behavior and it can become an issue for fully deterministic policies. However, with Q-learning, we can have an ε-greedy policy with <span class="math inline">\(\epsilon = 0\)</span> that ensures that this condition is fulfilled.</p>
+<p>The key element is that, while the policy determines which states and actions are visited by the agent, the Q-value update is performed over a greedy next action. This way, the learned Q-values are those corresponding to the greedy policy over them, which is the one fulfilling the Bellman optimality equations. The pseudo-code looks like this:</p>
+<div id="fig-qlearning" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02_mdp_tabular_files/figure-html/02ea830c-53b1-471f-9baf-e17ba4ad3d49-1-eec3ec69-290f-419b-b637-9f2d8a5fb211.png" width="70%" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Q-learning pseudo-code, from the <a href="https://arxiv.org/pdf/2204.04198#page=143">Machine Learning in Quantum Sciences book</a>.</figcaption><p></p>
+</figure>
+</div>
+<section id="example" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="example"><span class="header-section-number">2.1.1</span> Example</h3>
+<p>Let us create a dummy environment and see how to implement the above pseudocode with <code>numpy</code> (<code>pytorch</code> would also be fine!).</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> dummy_env:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This environment will just give us random states given any action.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_states <span class="op">=</span> <span class="dv">5</span>):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.num_states <span class="op">=</span> num_states</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> step(<span class="va">self</span>, action):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># In most RL environments, the function that receives an action</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># and implements it in the environment is called step. It then </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># returns the new state and the reward (let's consider it as 1 </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for this example</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.random.randint(<span class="va">self</span>.num_states), <span class="dv">1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># The reset module is used to bring back the environment to the starting</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># state. In this case we also pick that as random</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.random.randint(<span class="va">self</span>.num_states)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> dummy_env()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We now initialize the algorithm’s parameters as well as the Q-matrix:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We start by defining the number of states (given typically by the environment) </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and the number of actions (a random number in this example)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>num_states <span class="op">=</span> env.num_states</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>num_actions <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We also define the algorithm's parameters</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Q table with all zeros</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> np.zeros([num_states, num_actions])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># We also initialize the env to get the starting state:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>s0 <span class="op">=</span> env.reset()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we just need to follow the previous pseudocode:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We check for the greedy step:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> epsilon <span class="op">&lt;</span> np.random.rand():</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># random action</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> np.random.randint(num_actions)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># greedy action</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> np.argmax(Q[s0, :])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We now perform the action in the environment, and get a new state and reward</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>new_state, reward <span class="op">=</span> env.step(action)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># With this, we are ready to update our Q-matrix</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>Q[s0,action] <span class="op">=</span> Q[s0,action] <span class="op">+</span> eta<span class="op">*</span>(reward <span class="op">+</span> gamma<span class="op">*</span>np.<span class="bu">max</span>(Q[new_state,:]) <span class="op">-</span> Q[s0,action])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>s0, action, Q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(4,
+ 1,
+ array([[0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.],
+        [0., 1., 0.]]))</code></pre>
+</div>
+</div>
+<p>As you can see, the Q-matrix has been update according to the current state and action! In practice, the previous is run over multiple <em>episodes</em> (what we called before epochs). Each episode typically starts in the initial state (i.e.&nbsp;we run <code>env.reset</code>), and runs until we either: 1) reach the target state; 2) reach the maximum number of steps per episode previously define (<span class="math inline">\(T\)</span> in the pseudocode above); 3) We reach a “done” state, i.e.&nbsp;a particular state in which the agent is considered to have failed in some way and needs to restart from the beginning (i.e.&nbsp;loosing a chess match). Let’s see all that through an exercise:</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Implement the Q-learning algorithm in the Frozen Lake environment. For that, first need to install <code>pip install gymnasium</code>. You can find all details in the <a href="https://gymnasium.farama.org/environments/toy_text/frozen_lake/">environment documentation</a>. Then, you can load the environment using :</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gymnasium <span class="im">as</span> gym</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> gym.make(<span class="st">'FrozenLake-v1'</span>, render_mode<span class="op">=</span><span class="st">"ansi"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># gymnasium environments need to be reset before any use. </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># They also allow for some rendering of the </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>env.reset()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(env.render())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+SFFF
+FHFH
+FFFH
+HFFG
+</code></pre>
+</div>
+</div>
+<p>You can also get the size of the state and action spaces using:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>env.observation_space.n, env.action_space.n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(np.int64(16), np.int64(4))</code></pre>
+</div>
+</div>
+<p>To perform actions, we use again the <code>env.step</code> function, which in this case returns the next state, the reward, a boolean stating if the episode is done or not (e.g.&nbsp;because the agent fell in the lake or got the reward). The rest of the <code>env-step</code> output is not needed for this example.</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>next_state, reward, done, _, _ <span class="op">=</span> env.step(<span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(next_state, reward, done)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(env.render())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 0 False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+</code></pre>
+</div>
+</div>
+<p>Based on this, train a Q-learning agent. As a tip, the following training parameters should give you a nice result:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>,m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">0.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Track two variables:</p>
+<ol type="1">
+<li>The rewards you obtain per episode.</li>
+<li>The number of steps performed at each episode.</li>
+</ol>
+<p>Plot these two variables through a moving average over your episodes.</p>
+</div>
 </div>
 
 
+</section>
 </section>
 </section>
 
