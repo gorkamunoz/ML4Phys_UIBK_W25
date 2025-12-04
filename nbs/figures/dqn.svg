@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="91.206482mm"
+   height="27.563335mm"
+   viewBox="0 0 91.206482 27.563335"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (1:1.4.2+202505120738+ebf0e940d0)"
+   sodipodi:docname="dqn.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.8048681"
+     inkscape:cx="162.89279"
+     inkscape:cy="101.94651"
+     inkscape:window-width="2132"
+     inkscape:window-height="1169"
+     inkscape:window-x="60"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="ArrowWide"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path1-3" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-62.776836,-66.740941)">
+    <g
+       id="g6"
+       transform="translate(1.4053555)">
+      <rect
+         style="fill:#1a7dd7;stroke:none;stroke-width:0.800001;paint-order:markers fill stroke"
+         id="rect1"
+         width="25.772142"
+         height="20.669794"
+         x="90.500381"
+         y="70.187714"
+         rx="0"
+         ry="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:4.79028px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.799999;paint-order:markers fill stroke"
+         x="103.17594"
+         y="79.314514"
+         id="text1"><tspan
+           sodipodi:role="line"
+           id="tspan1"
+           style="text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.8"
+           x="103.17594"
+           y="79.314514">Neural </tspan><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.8"
+           x="103.17594"
+           y="85.302361"
+           id="tspan2">network</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:4.79028px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.799999;paint-order:markers fill stroke"
+       x="71.204208"
+       y="81.725327"
+       id="text1-4"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+         x="71.204208"
+         y="81.725327"
+         id="tspan2-9">state s<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan3">t</tspan></tspan></text>
+    <g
+       id="g5"
+       transform="translate(-1.0583336,-13.211512)">
+      <text
+         xml:space="preserve"
+         style="font-size:4.79028px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.799999;paint-order:markers fill stroke"
+         x="142.47562"
+         y="83.587265"
+         id="text1-4-0"><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+           x="142.47562"
+           y="83.587265"
+           id="tspan2-9-2">Q<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan6">NN</tspan>(s<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan5">t</tspan>, a<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan3-9">1</tspan>)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.79028px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.799999;paint-order:markers fill stroke"
+         x="142.47562"
+         y="92.577011"
+         id="text1-4-0-7"><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+           x="142.47562"
+           y="92.577011"
+           id="tspan2-9-2-4">Q<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan7">NN</tspan>(s<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan5-3">t</tspan>, a<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan3-9-1">2</tspan>)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.79028px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.799999;paint-order:markers fill stroke"
+         x="142.47562"
+         y="106.55773"
+         id="text1-4-0-2"><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+           x="142.47562"
+           y="106.55773"
+           id="tspan2-9-2-2">Q<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan8">NN</tspan>(s<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan5-6">t</tspan>, a<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan3-9-4">m</tspan>)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:4.79028px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.799999;paint-order:markers fill stroke"
+         x="142.40662"
+         y="98.526047"
+         id="text1-4-0-2-9"><tspan
+           sodipodi:role="line"
+           style="text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.8"
+           x="142.40662"
+           y="98.526047"
+           id="tspan2-9-2-2-2">...</tspan></text>
+    </g>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;marker-end:url(#ArrowWide);paint-order:markers fill stroke"
+       d="m 82.926844,80.522608 h 5.390208"
+       id="path5" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;marker-end:url(#ArrowWide-8);paint-order:markers fill stroke"
+       d="m 120.78801,80.522608 h 5.39021"
+       id="path5-3" />
+  </g>
+</svg>
