@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/homework_resources/HW3/ion trap environment.html</loc>
+    <lastmod>2025-12-04T08:49:08.722Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/homework_resources/HW3/reinforcement learning for ion traps.html</loc>
+    <lastmod>2025-12-04T08:49:09.092Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/logistic_regression.html</loc>
+    <lastmod>2025-12-04T08:49:10.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/linear_regression.html</loc>
+    <lastmod>2025-12-04T08:49:12.198Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/linear_models/polynomial_fit.html</loc>
+    <lastmod>2025-12-04T08:49:13.587Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/applications/application-genqc.html</loc>
+    <lastmod>2025-12-04T08:49:13.979Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/RL/intro_to_rl.html</loc>
+    <lastmod>2025-12-04T08:49:14.381Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/RL/mdp_value_based.html</loc>
+    <lastmod>2025-12-04T08:49:14.993Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/RL/mdp_tabular.html</loc>
+    <lastmod>2025-12-04T08:49:15.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/index.html</loc>
+    <lastmod>2025-12-04T08:49:15.626Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/neural_networks_from_scratch.html</loc>
+    <lastmod>2025-12-04T08:49:16.204Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/regularization_techniques.html</loc>
+    <lastmod>2025-12-04T08:49:17.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/nn_with_pytorch.html</loc>
+    <lastmod>2025-12-04T08:49:18.785Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/course/deep_learning/nn_layers.html</loc>
+    <lastmod>2025-12-04T08:49:20.595Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gorkamunoz.github.io/Machine-Learning-Course/installation_guide.html</loc>
+    <lastmod>2025-12-04T08:49:20.866Z</lastmod>
+  </url>
+  <url>
     <loc>https://gorkamunoz.github.io/Machine-Learning-Course/index.html</loc>
-    <lastmod>2025-10-03T11:09:15.552Z</lastmod>
+    <lastmod>2025-12-04T08:49:21.162Z</lastmod>
   </url>
 </urlset>

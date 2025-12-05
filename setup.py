@@ -1,7 +1,9 @@
-from pkg_resources import parse_version
+from packaging.version import parse as parse_version
 from configparser import ConfigParser
 import setuptools
 assert parse_version(setuptools.__version__)>=parse_version('36.2')
+from pathlib import Path
+
 
 # note: all settings are in settings.ini; edit there, not here
 config = ConfigParser(delimiters=['='])
@@ -45,7 +47,7 @@ setuptools.setup(
     extras_require={ 'dev': dev_requirements },
     dependency_links = cfg.get('dep_links','').split(),
     python_requires  = '>=' + cfg['min_python'],
-    long_description = open('README.md').read(),
+    long_description = Path(__file__).with_name("README.md").read_text(encoding="utf-8"),
     long_description_content_type = 'text/markdown',
     zip_safe = False,
     entry_points = {
@@ -53,5 +55,3 @@ setuptools.setup(
         'nbdev': [f'{cfg.get("lib_path")}={cfg.get("lib_path")}._modidx:d']
     },
     **setup_cfg)
-
-

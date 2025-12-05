@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="“Synthesis of discrete-continuous quantum circuits with multimodal diffusion models”, Florian Fürrutter, Zohim Chandani, Ikko Hamamura, Hans J. Briegel &amp; Gorka Muñoz-Gil, arXiv.2506.01666 (2025)">
+
+<title>ML in classical and quantum physics UIBK W25 - Compiling Unitaries Using Diffusion Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="ML in classical and quantum physics UIBK W25 - Compiling Unitaries Using Diffusion Models">
+<meta property="og:description" content="[&quot;Synthesis of discrete-continuous quantum circuits with multimodal diffusion models&quot;, Florian Fürrutter, Zohim Chandani, Ikko Hamamura, Hans J. Briegel &amp; Gorka Muñoz-Gil, arXiv.2506.">
+<meta property="og:site-name" content="ML in classical and quantum physics UIBK W25">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../figures/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ML in classical and quantum physics UIBK W25</span>
+    </a>
+  </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Compiling Unitaries Using Diffusion Models</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Get staterd</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://borjarequena.github.io/Machine-Learning-Course/course/introduction.html" class="sidebar-item-text sidebar-link">1. Intro to ML ↗</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">2. Linear models</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/linear_models/linear_regression.html" class="sidebar-item-text sidebar-link">Linear regression</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/linear_models/polynomial_fit.html" class="sidebar-item-text sidebar-link">Polynomial fit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/linear_models/logistic_regression.html" class="sidebar-item-text sidebar-link">Logistic regression</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">3. Deep learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/deep_learning/neural_networks_from_scratch.html" class="sidebar-item-text sidebar-link">NN from scratch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/deep_learning/nn_with_pytorch.html" class="sidebar-item-text sidebar-link">NN with PyTorch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/deep_learning/regularization_techniques.html" class="sidebar-item-text sidebar-link">NN regularization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/deep_learning/nn_layers.html" class="sidebar-item-text sidebar-link">NN Layers</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">4. Reinforcement learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/RL/intro_to_rl.html" class="sidebar-item-text sidebar-link">Basics of RL</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/RL/mdp_value_based.html" class="sidebar-item-text sidebar-link">MDPs and value methods</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#diffusion-model-pipeline" id="toc-diffusion-model-pipeline" class="nav-link active" data-scroll-target="#diffusion-model-pipeline">Diffusion model pipeline</a></li>
+  <li><a href="#setup-and-load-models" id="toc-setup-and-load-models" class="nav-link" data-scroll-target="#setup-and-load-models">Setup and load models</a>
+  <ul class="collapse">
+  <li><a href="#load-discrete-model" id="toc-load-discrete-model" class="nav-link" data-scroll-target="#load-discrete-model">Load discrete model</a></li>
+  <li><a href="#create-helper-functions" id="toc-create-helper-functions" class="nav-link" data-scroll-target="#create-helper-functions">Create helper functions</a></li>
+  </ul></li>
+  <li><a href="#unitary-compilation" id="toc-unitary-compilation" class="nav-link" data-scroll-target="#unitary-compilation">Unitary compilation</a>
+  <ul class="collapse">
+  <li><a href="#random-unitary" id="toc-random-unitary" class="nav-link" data-scroll-target="#random-unitary">Random unitary</a></li>
+  <li><a href="#discrete-model" id="toc-discrete-model" class="nav-link" data-scroll-target="#discrete-model">Discrete model</a></li>
+  </ul></li>
+  <li><a href="#choosing-the-circuit-you-need" id="toc-choosing-the-circuit-you-need" class="nav-link" data-scroll-target="#choosing-the-circuit-you-need">Choosing the circuit you need</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/gorkamunoz/Machine-Learning-Course/blob/master/nbs/course/applications/application-genQC.ipynb" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Compiling Unitaries Using Diffusion Models</h1>
+</div>
+
+<div>
+  <div class="description">
+    <a href="https://doi.org/10.48550/arXiv.2506.01666">“Synthesis of discrete-continuous quantum circuits with multimodal diffusion models”, Florian Fürrutter, Zohim Chandani, Ikko Hamamura, Hans J. Briegel &amp; Gorka Muñoz-Gil, arXiv.2506.01666 (2025)</a>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<p>Quantum computing relies on efficiently translating quantum operations into viable physical realizations on existing quantum hardware. Recently, diffusion models — a powerful class of generative models in machine learning — have demonstrated exceptional performance on this task.</p>
+<p>In this tutorial notebook, we will demonstrate how to use this method to synthesize arbitrary unitaries into a <code>cudaq.kernel</code>, effectively decomposing them into sequences of quantum gates, a process commonly known as unitary compilation.</p>
+<p>Our focus will be on generating circuits using a pre-trained diffusion model. Specifically, we will illustrate how to compile different unitaries into discrete quantum gates, based on the methods presented in <a href="https://doi.org/10.1038/s42256-024-00831-9">(Fürrutter et al., 2024)</a>, and continuous quantum gates, based on <a href="https://doi.org/10.48550/arXiv.2506.01666">(Fürrutter et al., 2025)</a>.</p>
+<section id="diffusion-model-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="diffusion-model-pipeline">Diffusion model pipeline</h2>
+<p>Generative diffusion models (DMs) have recently delivered remarkable results across a wide range of applications, from image generation to protein folding. In this work, we leverage DMs to generate quantum circuits based on a user specified unitary matrix and a text prompt that defines the allowed gate set, effectively using DMs as unitary compilers. The method is thoroughly explained in Ref. <a href="https://doi.org/10.1038/s42256-024-00831-9">(Fürrutter et al., 2024)</a>. The following figure provides an overview of the proposed circuit generation pipeline:</p>
+<figure class="figure">
+<img src="images/pipeline_simplified.png" alt="Quantum circuit generation pipeline overview" width="50%" class="figure-img">
+<figcaption class="figure-caption">
+<b>Quantum circuit generation pipeline</b>. Figure adapted from <a href="https://doi.org/10.1038/s42256-024-00831-9">(Fürrutter et al., 2024)</a>
+</figcaption>
+</figure>
+<p>The pipeline consists of 3 main components:</p>
+<p><strong>1) Circuit encoding:</strong> Like any neural network, diffusion models operate with continuous inputs and outputs. However, since the circuits we consider are composed of discrete gates (i.e., with no continuous parameters), we develop a mapping that transforms each gate into a continuous vector. This allows us to represent a given circuit as a three-dimensional tensor, as illustrated. Crucially, this mapping is invertible: when the DM generates continuous tensors, we can apply the inverse map to convert them back into the circuit form. An overview of these steps is provided in the figure below:</p>
+<figure class="figure">
+<img src="images/circuit_encoding.png" alt="Quantum circuit encoding" width="60%" class="figure-img">
+<figcaption class="figure-caption">
+<b>Quantum circuit encoding</b>. Figure adapted from <a href="https://doi.org/10.1038/s42256-024-00831-9">(Fürrutter et al., 2024)</a>
+</figcaption>
+</figure>
+<p><strong>2) Conditioning:</strong> The user’s input (the set of available gates and the unitary to compile) is also transformed into a continuous tensor by two neural networks. For the gate set description, where the input is a text prompt (e.g., “Compile using [‘x’, ‘h’]”), we utilize a pre-trained language model. For the unitary, we employ a neural network that is trained jointly with the diffusion model.</p>
+<p><strong>3) Unitary compilation:</strong> The generation procedure follows the typical DM process: the model is given a fully noisy tensor which is iteratively de-noised until reaching a clean sample based on the given conditioning (the desired unitary and gate set). The tensors generated by the DM are then mapped to circuits via the inverse encoding procedure. To learn more about the practical implementation of diffusion models we recommend <a href="https://course.fast.ai/Lessons/lesson9.html">this tutorial</a>.</p>
+<p>In the following, we will use <code>cudaq</code> and <a href="https://github.com/FlorianFuerrutter/genQC"><code>genQC</code></a> to perform all these steps and go from a desired unitary matrix <span class="math inline">\(U\)</span> to a quantum circuit that we can execute using CUDA-Q.</p>
+<blockquote class="blockquote">
+<p><strong>Extension to discrete-continuous quantum circuits:</strong> Recently, in <a href="https://doi.org/10.48550/arXiv.2506.01666">Fürrutter et al.&nbsp;(2025)</a>, the authors introduced the next generation of compilation models, utilizing not only discrete gates but also continuous quantum gates in a multimodal diffusion model. We refer interested readers to the paper for more advanced details on the method. Moreover, we will also cover its use in the sections below.</p>
+</blockquote>
+</section>
+<section id="setup-and-load-models" class="level2">
+<h2 class="anchored" data-anchor-id="setup-and-load-models">Setup and load models</h2>
+<p>First, we make sure we have a compatible version of <code>genQC</code> (<a href="https://github.com/FlorianFuerrutter/genQC">github.com/FlorianFuerrutter/genQC</a>) installed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install genQC<span class="op">==</span><span class="fl">0.2.3</span> torch <span class="op">--</span><span class="cf">break</span><span class="op">-</span>system<span class="op">-</span>packages <span class="op">-</span>q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cudaq</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> genQC</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">'HF_HUB_DISABLE_PROGRESS_BARS'</span>] <span class="op">=</span> <span class="st">'1'</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> genQC.utils.misc_utils <span class="im">as</span> util</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.pipeline.diffusion_pipeline <span class="im">import</span> DiffusionPipeline</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.pipeline.multimodal_diffusion_pipeline <span class="op">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="im">import</span> MultimodalDiffusionPipeline_ParametrizedCompilation</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.platform.tokenizer.circuits_tokenizer <span class="im">import</span> CircuitTokenizer</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.platform.simulation <span class="im">import</span> Simulator, CircuitBackendType</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.scheduler.scheduler_dpm <span class="im">import</span> DPMScheduler</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.inference.sampling <span class="op">\</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="im">import</span> decode_tensors_to_backend, generate_compilation_tensors</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.inference.evaluation_helper <span class="im">import</span> get_unitaries</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> genQC.inference.eval_metrics <span class="im">import</span> UnitaryInfidelityNorm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> util.infer_torch_device() <span class="co"># Use CUDA if we have a GPU</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[INFO]: Cuda device has a capability of 8.6 (&gt;= 8), allowing tf32 matmul.
+cuda</code></pre>
+</div>
+</div>
+<p>We set a fixed seed for reproducibility.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We set a seed to pytorch, numpy and python. </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: This will also set deterministic cuda algorithms, possibly at the cost of reduced performance!</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>util.set_seed(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For evaluation, we also need to specify the <code>cudaq</code> circuit simulator backend.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simulator <span class="op">=</span> Simulator(CircuitBackendType.CUDAQ, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                      target<span class="op">=</span><span class="st">'qpp-cpu'</span>)  <span class="co"># Target for cudaq, note that cpu is faster for low qubit kernels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="load-discrete-model" class="level3">
+<h3 class="anchored" data-anchor-id="load-discrete-model">Load discrete model</h3>
+<p>First, we load pre-trained model weights for a discrete model directly from <a href="https://huggingface.co/Floki00/qc_unitary_3qubit">Hugging Face: Floki00/qc_unitary_3qubit</a> and setup the DM pipeline. For details of the model we refer to the paper <a href="https://doi.org/10.1038/s42256-024-00831-9">Fürrutter et al., 2024</a>. Note that this model is only trained on 3 qubit unitaries up to 12 gates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>discrete_pipeline <span class="op">=</span> DiffusionPipeline.from_pretrained(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>            repo_id<span class="op">=</span><span class="st">"Floki00/qc_unitary_3qubit"</span>, <span class="co"># Download model from Hugging Face</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            device<span class="op">=</span>device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[INFO]: `genQC.models.unet_qc.QC_Compilation_UNet` instantiated from given `config` on cuda.
+[INFO]: Loading model from `/home/gorka/.cache/huggingface/hub/models--Floki00--qc_unitary_3qubit/snapshots/e12810ea65a9a88832fadd34834894e8174658a5/model.pt` onto device: cuda.
+[INFO]: `genQC.models.unet_qc.QC_Compilation_UNet`. Freeze model: True
+[INFO]: `genQC.models.frozen_open_clip.CachedFrozenOpenCLIPEmbedder` instantiated from given `config` on cuda.
+[INFO]: `genQC.models.frozen_open_clip.CachedFrozenOpenCLIPEmbedder`. Found no key `save_type` in `config`. No state dict loaded.
+[INFO]: `genQC.models.frozen_open_clip.CachedFrozenOpenCLIPEmbedder`. Freeze model: True</code></pre>
+</div>
+</div>
+<p>The loaded discrete model is trained with the discrete gate set:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>discrete_pipeline.gate_pool</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['h', 'cx', 'z', 'x', 'ccx', 'swap']</code></pre>
+</div>
+</div>
+<p>which we need in order to define the <code>discrete_vocabulary</code> and create a <code>CircuitTokenizer</code>, allowing us to decode tokenized circuits generated by the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>discrete_vocabulary <span class="op">=</span> {g:i<span class="op">+</span><span class="dv">1</span> <span class="cf">for</span> i, g <span class="kw">in</span> <span class="bu">enumerate</span>(discrete_pipeline.gate_pool)} </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>discrete_tokenizer  <span class="op">=</span> CircuitTokenizer(discrete_vocabulary)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>discrete_tokenizer.vocabulary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>{'h': 1, 'cx': 2, 'z': 3, 'x': 4, 'ccx': 5, 'swap': 6}</code></pre>
+</div>
+</div>
+<p>Set parameters the model was trained on. Note that these are fixed and depend on the pre-trained model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These parameters are specific to our pre-trained model.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>discrete_system_size   <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>discrete_max_gates     <span class="op">=</span> <span class="dv">12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Set inference parameters</strong></p>
+<p>Then, we setup diffusion model inference parameters. These can be changed in principle, as they are sample hyperparameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>timesteps <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>discrete_pipeline.scheduler.set_timesteps(timesteps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-helper-functions" class="level3">
+<h3 class="anchored" data-anchor-id="create-helper-functions">Create helper functions</h3>
+<p>To facilitate the sampling, evaluating and plotting multiple circuits for different unitaries, we create some helper functions here.</p>
+<ol type="1">
+<li>A function to check that a matrix <code>U</code> is indeed unitary, i.e.&nbsp;<span class="math inline">\(U^{\dagger} U = U U^{\dagger} = I\)</span>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> verify_unitary(U: torch.Tensor):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Check if unitary."""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> torch.allclose(U.adjoint() <span class="op">@</span> U, torch.eye(<span class="dv">2</span><span class="op">**</span>num_of_qubits, dtype<span class="op">=</span>U.dtype))  </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> torch.allclose(U <span class="op">@</span> U.adjoint(), torch.eye(<span class="dv">2</span><span class="op">**</span>num_of_qubits, dtype<span class="op">=</span>U.dtype))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>A function to sample the DM and return generated kernels with coresponding infidelities.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_kernels_and_evaluate(U: torch.Tensor, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                prompt: <span class="bu">str</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                num_of_qubits: <span class="bu">int</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                samples: <span class="bu">int</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                return_tensors: <span class="bu">bool</span> <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Sample the DM and return generated kernels with coresponding infidelities.</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1) Check if unitary</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    verify_unitary(U)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2) Generate tensor representations using the DM based on the prompt and U.</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> U.to(torch.complex64)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample discrete model</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    out_tensor <span class="op">=</span> generate_compilation_tensors(discrete_pipeline, </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>                              prompt<span class="op">=</span>prompt, </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>                              U<span class="op">=</span>U, </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                              samples<span class="op">=</span>samples,      <span class="co"># How many circuits we sample per unitary</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                              system_size<span class="op">=</span>discrete_system_size, </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>                              num_of_qubits<span class="op">=</span>num_of_qubits, </span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>                              max_gates<span class="op">=</span>discrete_max_gates,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>                              g<span class="op">=</span><span class="fl">10.0</span>,               <span class="co"># classifier-free-guidance (CFG) scale</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>                              no_bar<span class="op">=</span><span class="va">False</span>,         <span class="co"># show progress bar</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>                              auto_batch_size<span class="op">=</span><span class="dv">256</span>,  <span class="co"># for less GPU memory usage limit batch size </span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>                              tensor_prod_pad<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>                              enable_params<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>                             )</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    tokenizer <span class="op">=</span> discrete_tokenizer</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    params    <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3) Convert tensors to kernels </span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    generated_kernels, _, generated_tensors <span class="op">=</span> decode_tensors_to_backend(simulator<span class="op">=</span>simulator, </span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>                                                     tokenizer<span class="op">=</span>tokenizer, </span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>                                                     tensors<span class="op">=</span>out_tensor, </span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>                                                     params<span class="op">=</span>params,</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>                                                     return_tensors<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4) Evaluate the kernels and return the unitaries</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>    generated_us <span class="op">=</span> get_unitaries(simulator, generated_kernels, num_qubits<span class="op">=</span>num_of_qubits)</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5) Calculate the infidelities to the target U</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    infidelities <span class="op">=</span> UnitaryInfidelityNorm.distance(</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>                    approx_U<span class="op">=</span>torch.from_numpy(np.stack(generated_us)).to(torch.complex128), </span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>                    target_U<span class="op">=</span>U.unsqueeze(<span class="dv">0</span>).to(torch.complex128))</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> return_tensors:</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> generated_kernels, infidelities, generated_tensors</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> generated_kernels, infidelities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>A function to plot the <code>topk</code> best generated kernels.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_topk_kernels(generated_kernels: <span class="bu">list</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                      infidelities: torch.Tensor, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                      num_of_qubits:<span class="bu">int</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                      topk: <span class="bu">int</span>):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Plot the topk best generated kernels.</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get topk indices</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    best_indices <span class="op">=</span> np.argsort(infidelities)[:topk]</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    input_state <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> (<span class="dv">2</span><span class="op">**</span>num_of_qubits)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    input_state[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print the circuits</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, best_index <span class="kw">in</span> <span class="bu">enumerate</span>(best_indices):</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        kernel <span class="op">=</span> generated_kernels[best_index].kernel</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        thetas <span class="op">=</span> generated_kernels[best_index].params</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Circuit has an infidelity of </span><span class="sc">{</span>infidelities[best_index]<span class="sc">.</span>item()<span class="sc">:0.1e}</span><span class="ss">."</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(cudaq.draw(kernel, input_state, thetas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="unitary-compilation" class="level2">
+<h2 class="anchored" data-anchor-id="unitary-compilation">Unitary compilation</h2>
+<p>We start by defining the unitaries we want to compile and then sample the corresponding DM. Note that these models have been trained to compile unitaries that arise from circuits composed of the gates contained in their <code>vocabulary</code>. While these are universal gate sets, i.e.&nbsp;they can perform universal computation, they can only do so with an arbitrary-precision for an infinite number of gates. Because the number of gates in the models are restricted to some <code>max_gates</code> (12 for the discrete model and 32 for the continuous one), we can only expect the models to generate unitaries under this constraint. We will consider here the compilation of such unitaries. Nonetheless, stay tuned for bigger and better models!</p>
+<section id="random-unitary" class="level3">
+<h3 class="anchored" data-anchor-id="random-unitary">Random unitary</h3>
+<p>Let’s start with a random 3-qubit unitary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>num_of_qubits <span class="op">=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can define our arbitrary unitary <code>U</code> directly as a complex <code>torch.tensor</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> torch.tensor([[<span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>               [<span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>],</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>],</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>],</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>]],              </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>              dtype<span class="op">=</span>torch.complex128)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="discrete-model" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-model">Discrete model</h3>
+<p>The loaded discrete model was trained on the gate set <code>['h', 'cx', 'z', 'x', 'ccx', 'swap']</code>. Specifically, it was trained to generate circuits using any arbitrary subset of this gate set. Therefore, during inference, we can instruct the model to compile the unitary using any of these subsets. However, it is crucial to follow the prompt structure <code>Compile using [...]</code>, as the model was trained with this specific format.</p>
+<p>For example, let’s consider a scenario where we compile the unitary without using the <code>x</code> gate:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice how the x gate is missing from the prompt since this is a restriction we set</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"Compile using: ['h', 'cx', 'z', 'ccx', 'swap']"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we call the diffusion model pipeline to generate encoded circuits based on the specified conditions: <code>prompt</code> and <code>U</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>generated_kernels, infidelities <span class="op">=</span> sample_kernels_and_evaluate(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                                          U<span class="op">=</span>U, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                                          prompt<span class="op">=</span>prompt, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                                          num_of_qubits<span class="op">=</span>num_of_qubits, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                                          samples<span class="op">=</span><span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"0226cb73cf954289b0d79c547a6df464","version_major":2,"version_minor":0}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[INFO]: (generate_comp_tensors) Generated 128 tensors</code></pre>
+</div>
+</div>
+<p>Next, we plot the best three circuits in the following cell.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot_topk_kernels(generated_kernels, infidelities, num_of_qubits, topk<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Circuit has an infidelity of 3.4e-08.
+     ╭───╮╭───╮        ╭───╮╭───╮     
+q0 : ┤ x ├┤ z ├─────●──┤ z ├┤ z ├──●──
+     ╰─┬─╯╰───╯   ╭─┴─╮├───┤╰───╯╭─┴─╮
+q1 : ──●────────╳─┤ x ├┤ z ├─────┤ x ├
+       │  ╭───╮ │ ╰─┬─╯╰───╯     ╰─┬─╯
+q2 : ──●──┤ h ├─╳───●──────────────●──
+          ╰───╯                       
+
+Circuit has an infidelity of 3.4e-08.
+     ╭───╮╭───╮                  
+q0 : ┤ x ├┤ z ├─────●─────────●──
+     ╰─┬─╯╰───╯   ╭─┴─╮╭───╮╭─┴─╮
+q1 : ──●────────╳─┤ x ├┤ z ├┤ x ├
+       │  ╭───╮ │ ╰─┬─╯╰───╯╰─┬─╯
+q2 : ──●──┤ h ├─╳───●─────────●──
+          ╰───╯                  
+
+Circuit has an infidelity of 3.4e-08.
+     ╭───╮╭───╮                  
+q0 : ┤ x ├┤ z ├─────●─────────●──
+     ╰─┬─╯╰───╯   ╭─┴─╮╭───╮╭─┴─╮
+q1 : ──●────────╳─┤ x ├┤ z ├┤ x ├
+       │  ╭───╮ │ ╰─┬─╯╰───╯╰─┬─╯
+q2 : ──●──┤ h ├─╳───●─────────●──
+          ╰───╯                  
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="choosing-the-circuit-you-need" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-circuit-you-need">Choosing the circuit you need</h2>
+<p>As mentioned earlier, one of the key advantages of using diffusion models (DMs) as a unitary compiler is the ability to rapidly sample many circuits. However, as is common in machine learning, the model has a certain accuracy, meaning not all generated circuits are expected to exactly compile the specified unitary. In this section, we will evaluate how many of the generated circuits are indeed correct and then perform post-selection to identify circuits that successfully perform the desired unitary operation.</p>
+<p>Let’s revisit the random unitary from before, but this time we closer inspect what the model generates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>num_of_qubits <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"Compile </span><span class="sc">{</span>num_of_qubits<span class="sc">}</span><span class="ss"> qubits using: ['h', 'cx', 'z', 'x', 'ccx', 'swap']"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> torch.tensor([[<span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>               [<span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>],</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>],</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>],</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="op">-</span><span class="fl">0.70710678</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.70710678</span>, <span class="fl">0.</span>]],              </span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>              dtype<span class="op">=</span>torch.complex128)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>generated_kernels, infidelities, generated_tensors <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                sample_kernels_and_evaluate(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                              U<span class="op">=</span>U, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                              prompt<span class="op">=</span>prompt, </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                              num_of_qubits<span class="op">=</span>num_of_qubits, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                              samples<span class="op">=</span><span class="dv">128</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                              return_tensors<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"577704b929e84060b7e83bddecd8fed9","version_major":2,"version_minor":0}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[INFO]: (generate_comp_tensors) Generated 128 tensors</code></pre>
+</div>
+</div>
+<p>First, we plot a histogram of the infidelities of our generated circuits.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>plt.title(</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Distribution of infidelities for </span><span class="sc">{</span><span class="bu">len</span>(infidelities)<span class="sc">}</span><span class="ss"> generated circuits"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of circuits"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Unitary infidelity"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plt.hist(infidelities, bins<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="application-genQC_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>As we see above, we now have around 15 kernels that compile the desired unitary! This is particularly valuable when dealing with hardware constraints, where, for instance, we might want to avoid using certain qubits or specific gates. One practical example is finding the circuit with the fewest CNOT gates (also known as <code>cx</code>). In our <code>discrete_vocabulary</code> definition above, we identified that <code>cx</code> corresponds to the label 2 in our tokenized tensors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cx_token <span class="op">=</span> discrete_vocabulary[<span class="st">"ccx"</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>cx_token</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>5</code></pre>
+</div>
+</div>
+<p>Let’s use this information to search for the circuit that minimizes the number of <code>cx</code> gates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we remove possible duplicates and only pick distinct circuits</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>_, idx_unique <span class="op">=</span> torch.unique(generated_tensors, dim<span class="op">=</span><span class="dv">0</span>, return_inverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>unique_tensors <span class="op">=</span> generated_tensors[idx_unique]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>unique_infidelities <span class="op">=</span> infidelities[idx_unique]</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>unique_kernels <span class="op">=</span> [generated_kernels[idx] <span class="cf">for</span> idx <span class="kw">in</span> idx_unique]</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, find the correct circuits</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>idx_correct <span class="op">=</span> torch.argwhere(unique_infidelities <span class="op">&lt;</span> <span class="fl">0.01</span>).flatten()</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>correct_tensors <span class="op">=</span> unique_tensors[idx_correct]</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"The model generated </span><span class="sc">{</span>correct_tensors<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> distinct circuits with infidelity &lt; 0.01."</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Now let's flatten the last two dimensions (related to the actual circuit) and find out how many 2's (i.e. cx) gates each circuit has:</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>num_cx <span class="op">=</span> (correct_tensors.flatten(<span class="dv">1</span>, <span class="dv">2</span>) <span class="op">==</span> cx_token).<span class="bu">sum</span>(<span class="dv">1</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"These circuits have this number of cx gates:"</span>, num_cx.tolist())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model generated 31 distinct circuits with infidelity &lt; 0.01.
+These circuits have this number of cx gates: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</code></pre>
+</div>
+</div>
+<p>As we can see, the diffusion model (DM) uses 0 to 3 CNOT gates to compile the unitary. We can now print a few of these circuits to select the one that best suits our needs, or to study whether there are any interesting patterns the model employs for this specific unitary.</p>
+<p>For instance, we can sort the circuits by their <code>cx</code> count and plot them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the correct kernels</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>correct_kernels <span class="op">=</span> [unique_kernels[idx] <span class="cf">for</span> idx <span class="kw">in</span> idx_correct]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Order the gates by cx count</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>correct_kernels_cx_sorted <span class="op">=</span> [</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    (correct_kernels[idx], num_cx[idx]) <span class="cf">for</span> idx <span class="kw">in</span> torch.argsort(num_cx)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a few of these circuits</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>input_state <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> (<span class="dv">2</span><span class="op">**</span>num_of_qubits)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>input_state[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> correct_kernel, num_cx_gates <span class="kw">in</span> correct_kernels_cx_sorted[:<span class="dv">3</span>]:</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    kernel <span class="op">=</span> correct_kernel.kernel</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    thetas <span class="op">=</span> correct_kernel.params</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Generated circuit with </span><span class="sc">{</span>num_cx_gates<span class="sc">}</span><span class="ss"> cx:"</span>)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(cudaq.draw(kernel, input_state, thetas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generated circuit with 1 cx:
+     ╭───╮╭───╮╭───╮           ╭───╮        
+q0 : ┤ x ├┤ h ├┤ x ├─╳───────╳─┤ h ├────────
+     ╰─┬─╯╰───╯╰─┬─╯ │ ╭───╮ │ ├───┤        
+q1 : ──●─────────●───╳─┤ x ├─╳─┤ z ├─╳──────
+       │  ╭───╮╭───╮   ╰───╯   ╰───╯ │ ╭───╮
+q2 : ──●──┤ h ├┤ z ├─────────────────╳─┤ z ├
+          ╰───╯╰───╯                   ╰───╯
+
+Generated circuit with 1 cx:
+     ╭───╮╭───╮     ╭───╮              
+q0 : ┤ x ├┤ z ├──╳──┤ x ├─╳──╳──╳───╳──
+     ╰─┬─╯├───┤  │  ╰─┬─╯ │  │  │   │  
+q1 : ──●──┤ h ├──╳────●───┼──┼──┼───╳──
+       │  ├───┤╭───╮      │  │  │ ╭───╮
+q2 : ──●──┤ h ├┤ z ├──────╳──╳──╳─┤ h ├
+          ╰───╯╰───╯              ╰───╯
+
+Generated circuit with 1 cx:
+     ╭───╮╭───╮                           
+q0 : ┤ x ├┤ z ├─────────╳───────╳──╳───╳──
+     ╰─┬─╯├───┤         │       │  │   │  
+q1 : ──●──┤ h ├──────╳──╳───●───┼──┼───╳──
+       │  ├───┤╭───╮ │    ╭─┴─╮ │  │ ╭───╮
+q2 : ──●──┤ x ├┤ h ├─╳────┤ x ├─╳──╳─┤ h ├
+          ╰───╯╰───╯      ╰───╯      ╰───╯
+</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cudaq.__version__)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"genQC Version"</span>, genQC.__version__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CUDA-Q Version 0.11.0 (https://github.com/NVIDIA/cuda-quantum f5cc3bb1d85abcf1f642f4ddd20ad08bc1d4d200)
+genQC Version 0.2.3</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"state":{},"version_major":2,"version_minor":0}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
