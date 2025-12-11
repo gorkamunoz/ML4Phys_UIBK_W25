@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Gorka Muñoz-Gil">
 
-<title>ML in classical and quantum physics UIBK W25 - Machine Learning in Classical and Quantum Physics</title>
+<title>ML in classical and quantum physics UIBK W25 - Generative modelling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,9 +61,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="ML in classical and quantum physics UIBK W25 - Machine Learning in Classical and Quantum Physics">
-<meta property="og:description" content="Welcome to the webpage of the ML for Physics Course at the UIBK.">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="ML in classical and quantum physics UIBK W25 - Generative modelling">
 <meta property="og:site-name" content="ML in classical and quantum physics UIBK W25">
 </head>
 
@@ -73,10 +73,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./figures/logo.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../figures/logo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">ML in classical and quantum physics UIBK W25</span>
     </a>
   </div>
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Machine Learning in Classical and Quantum Physics</h1>
+      <h1 class="quarto-secondary-nav-title">Generative modelling</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Get staterd</a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Get staterd</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -118,17 +118,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/linear_models/linear_regression.html" class="sidebar-item-text sidebar-link">Linear regression</a>
+  <a href="../../course/linear_models/linear_regression.html" class="sidebar-item-text sidebar-link">Linear regression</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/linear_models/polynomial_fit.html" class="sidebar-item-text sidebar-link">Polynomial fit</a>
+  <a href="../../course/linear_models/polynomial_fit.html" class="sidebar-item-text sidebar-link">Polynomial fit</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/linear_models/logistic_regression.html" class="sidebar-item-text sidebar-link">Logistic regression</a>
+  <a href="../../course/linear_models/logistic_regression.html" class="sidebar-item-text sidebar-link">Logistic regression</a>
   </div>
 </li>
       </ul>
@@ -143,22 +143,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/deep_learning/neural_networks_from_scratch.html" class="sidebar-item-text sidebar-link">NN from scratch</a>
+  <a href="../../course/deep_learning/neural_networks_from_scratch.html" class="sidebar-item-text sidebar-link">NN from scratch</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/deep_learning/nn_with_pytorch.html" class="sidebar-item-text sidebar-link">NN with PyTorch</a>
+  <a href="../../course/deep_learning/nn_with_pytorch.html" class="sidebar-item-text sidebar-link">NN with PyTorch</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/deep_learning/regularization_techniques.html" class="sidebar-item-text sidebar-link">NN regularization</a>
+  <a href="../../course/deep_learning/regularization_techniques.html" class="sidebar-item-text sidebar-link">NN regularization</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/deep_learning/nn_layers.html" class="sidebar-item-text sidebar-link">NN Layers</a>
+  <a href="../../course/deep_learning/nn_layers.html" class="sidebar-item-text sidebar-link">NN Layers</a>
   </div>
 </li>
       </ul>
@@ -173,12 +173,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/RL/intro_to_rl.html" class="sidebar-item-text sidebar-link">Basics of RL</a>
+  <a href="../../course/RL/intro_to_rl.html" class="sidebar-item-text sidebar-link">Basics of RL</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/RL/mdp_value_based.html" class="sidebar-item-text sidebar-link">MDPs and tabular methods</a>
+  <a href="../../course/RL/mdp_value_based.html" class="sidebar-item-text sidebar-link">MDPs and tabular methods</a>
   </div>
 </li>
       </ul>
@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/unsupervised_learning/intro_to_unsup.html" class="sidebar-item-text sidebar-link">Intro to unsupervised learning</a>
+  <a href="../../course/unsupervised_learning/intro_to_unsup.html" class="sidebar-item-text sidebar-link">Intro to unsupervised learning</a>
   </div>
 </li>
       </ul>
@@ -203,29 +203,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#course-description" id="toc-course-description" class="nav-link active" data-scroll-target="#course-description">Course description</a></li>
-  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  <li><a href="#previous-contributors" id="toc-previous-contributors" class="nav-link" data-scroll-target="#previous-contributors">Previous contributors</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/gorkamunoz/Machine-Learning-Course/blob/master/nbs/index.ipynb" class="toc-action">View source</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Machine Learning in Classical and Quantum Physics</h1>
+<h1 class="title d-none d-lg-block">Generative modelling</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gorka Muñoz-Gil </p>
+          </div>
+  </div>
     
   
     
@@ -235,51 +232,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p>Welcome to the webpage of the <strong>ML for Physics</strong> Course at the <strong>UIBK</strong>. Here you will find most resources of the course, from explanatory notebooks to code snippets that will help us explore the wild world of ML.</p>
-<section id="course-description" class="level2">
-<h2 class="anchored" data-anchor-id="course-description">Course description</h2>
-<p>This course gives an introduction to machine learning and deep learning: starting from linear linear models al the way up to state of the art generative models. The material covers the following topics:</p>
-<ul>
-<li>What is actually machine <em>learning</em>?</li>
-<li>Basics of ML: From linear models to logistic regression</li>
-<li>ML applications: from computer vision to Physics</li>
-<li>Basics of deep learning: from neural networks to Transformers</li>
-<li>Unsupervised learning and interpretable ML</li>
-<li>Reinforcement Learning</li>
-<li>Generative modelling: from Boltzmann machines to diffusion models</li>
-</ul>
-<p>The course combines theory and practice in the form of jupyter notebooks with python. We make extensive use of specific librairies such as <code>numpy</code>, <code>PyTorch</code> and <code>fastai</code>.</p>
-</section>
-<section id="evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
-<p><strong>Homeworks (50%)</strong></p>
-<p>There will be 3 homeworks, each equally contributing to the final mark. To know more about the homeworks, visit the <a href="https://www.codabench.org/competitions/10839">Codabench platform</a>. The day after the submission of each of the homeworks, your group will do a short presentation (5 mins.) about the methods you developed. The mark will calculated from your performance above the baseline (60%), the revision of the code + your presentations (35%) and an extra 5% based on your ranking’s position (first position gets the full 5% :), and we decrease linearly).</p>
-<blockquote class="blockquote">
-<p><strong>Important</strong>: to get accepted in the competition, your Codabench username must end with “_UIBK25”.</p>
-</blockquote>
-<p><strong>Final Project (30%)</strong></p>
-<p>The last weeks of the course you will work in groups on a final project, the topic of which will be made public at later stages. You will present your findings in a 20 minutes presentation in the last days of the course. The topics of the final projects will be decided later, based on the number of course participants.</p>
-<p><strong>Exam (20%)</strong></p>
-<p>A short written exam, reviewing the main concepts taught in the course.</p>
-</section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<blockquote class="blockquote">
-<p><strong>Important</strong>: follow this <a href="./installation_guide.html">installation guide</a> to install the main resources of this course.</p>
-</blockquote>
-<ul>
-<li>Some of the content of this course has been adapted from the book <a href="https://arxiv.org/abs/2204.04198">Machine Learning for the Quantum Sciences</a> by A. Dawid et al., which serves as a gentle introduction to ML but also to its applications in quantum sciences.</li>
-<li>The book <a href="https://neuralnetworksanddeeplearning.com/index.html">Neural Networks and Deep Learning</a> by Nielsen offers a nice hands-on introduction to the world of ML</li>
-<li>If you are already fluent in Python, the course <a href="https://course.fast.ai/">Practical Deep Learning for Coders</a> is for you. Indeed, we will extensively use some of the tools developed therein, as for instance the library <code>fastai</code>.</li>
-<li>For the Reinforcement Learning part of this course, the book <a href="http://incompleteideas.net/book/the-book-2nd.html">Reinforcement Learning: An Introduction</a> is the go-to resource</li>
-</ul>
-</section>
-<section id="previous-contributors" class="level2">
-<h2 class="anchored" data-anchor-id="previous-contributors">Previous contributors</h2>
-<p>Part of the content of this course was originally developed for by Borja Requena, Alexandre Dauphin, Marcin Płodzień and Paolo Stornati for the <a href="https://quantummasterbarcelona.eu">Master in Quantum Science and Technology Barcelona</a>. The original course content can be found <a href="https://borjarequena.github.io/Machine-Learning-Course/">here</a>.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

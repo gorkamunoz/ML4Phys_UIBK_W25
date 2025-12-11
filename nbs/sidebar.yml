@@ -26,7 +26,7 @@ website:
         contents:
           - course/RL/01_intro_to_rl.ipynb
           - course/RL/02_mdp_value_based.ipynb
-      - section: Unsupervised learning 
+      - section: 5. Unsupervised learning 
         contents:
           - course/unsupervised_learning/01_intro_to_unsup.ipynb
       #     - course/deep_learning/pytorch_intro.ipynb                                         
