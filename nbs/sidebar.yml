@@ -26,11 +26,9 @@ website:
         contents:
           - course/RL/01_intro_to_rl.ipynb
           - course/RL/02_mdp_value_based.ipynb
-      #     - course/applications/applications-nlp.ipynb
-      #     - course/applications/applications-tabular.ipynb
-      # - section: Deep Learning 
-      #   contents:
-      #     - course/deep_learning/neural_networks_from_scratch.ipynb
+      - section: Unsupervised learning 
+        contents:
+          - course/unsupervised_learning/01_intro_to_unsup.ipynb
       #     - course/deep_learning/pytorch_intro.ipynb                                         
       #     - course/deep_learning/automatic_differentiation_pytorch.ipynb
       #     - course/deep_learning/multiclass_classification_problem.ipynb
