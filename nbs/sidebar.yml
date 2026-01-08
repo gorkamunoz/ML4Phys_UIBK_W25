@@ -29,6 +29,7 @@ website:
       - section: Unsupervised learning 
         contents:
           - course/unsupervised_learning/01_intro_to_unsup.ipynb
+          - course/unsupervised_learning/02_generative.ipynb          
       #     - course/deep_learning/pytorch_intro.ipynb                                         
       #     - course/deep_learning/automatic_differentiation_pytorch.ipynb
       #     - course/deep_learning/multiclass_classification_problem.ipynb
