@@ -264,6 +264,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../course/unsupervised_learning/intro_to_unsup.html" class="sidebar-item-text sidebar-link active">Intro to unsupervised learning</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/unsupervised_learning/generative.html" class="sidebar-item-text sidebar-link">Generative modeling</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -477,7 +482,7 @@ C = \frac{1}{n} (X - \bar{X})^\top (X - \bar{X})
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            nn.ReLU()</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flat_dim <span class="op">=</span> <span class="dv">16</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">3</span>  <span class="co"># = 144</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flat_dim <span class="op">=</span> <span class="dv">16</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">3</span>  </span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Linear bottleneck</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.encoder_fc <span class="op">=</span> nn.Linear(<span class="va">self</span>.flat_dim, latent_dim)</span>

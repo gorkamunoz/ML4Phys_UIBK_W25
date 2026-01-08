@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Gorka Muñoz-Gil">
+<meta name="author" content="Gorka Muñoz-Gil and Borja Requena">
 
-<title>ML in classical and quantum physics UIBK W25 - Generative modelling</title>
+<title>ML in classical and quantum physics UIBK W25 - Generative modeling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -59,10 +122,15 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="ML in classical and quantum physics UIBK W25 - Generative modelling">
+<meta property="og:title" content="ML in classical and quantum physics UIBK W25 - Generative modeling">
+<meta property="og:description" content="In this notebook, we will explore generative modelling, the branch of machine learning that has perhaps seen the biggest advances in the last couple of years, fueled by the advent of larger language…">
 <meta property="og:site-name" content="ML in classical and quantum physics UIBK W25">
 </head>
 
@@ -85,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Generative modelling</h1>
+      <h1 class="quarto-secondary-nav-title">Generative modeling</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -185,15 +253,20 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">5. Unsupervised learning</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">5. Unsupervised learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../course/unsupervised_learning/intro_to_unsup.html" class="sidebar-item-text sidebar-link">Intro to unsupervised learning</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/unsupervised_learning/generative.html" class="sidebar-item-text sidebar-link active">Generative modeling</a>
   </div>
 </li>
       </ul>
@@ -203,14 +276,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link active" data-scroll-target="#maximum-likelihood-estimation"><span class="toc-section-number">1</span>  Maximum likelihood estimation</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">1.1</span>  Example</a></li>
+  </ul></li>
+  <li><a href="#boltzmann-machines" id="toc-boltzmann-machines" class="nav-link" data-scroll-target="#boltzmann-machines"><span class="toc-section-number">2</span>  Boltzmann Machines</a>
+  <ul class="collapse">
+  <li><a href="#restricted-boltzmann-machines" id="toc-restricted-boltzmann-machines" class="nav-link" data-scroll-target="#restricted-boltzmann-machines"><span class="toc-section-number">2.1</span>  Restricted Boltzmann machines</a></li>
+  </ul></li>
+  <li><a href="#variational-autoencoders" id="toc-variational-autoencoders" class="nav-link" data-scroll-target="#variational-autoencoders"><span class="toc-section-number">3</span>  Variational Autoencoders</a>
+  <ul class="collapse">
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="toc-section-number">3.1</span>  Architecture</a></li>
+  <li><a href="#loss" id="toc-loss" class="nav-link" data-scroll-target="#loss"><span class="toc-section-number">3.2</span>  Loss</a></li>
+  <li><a href="#interpretability-in-vaes" id="toc-interpretability-in-vaes" class="nav-link" data-scroll-target="#interpretability-in-vaes"><span class="toc-section-number">3.3</span>  Interpretability in VAEs</a></li>
+  <li><a href="#extra-interpreting-the-latent-space" id="toc-extra-interpreting-the-latent-space" class="nav-link" data-scroll-target="#extra-interpreting-the-latent-space"><span class="toc-section-number">3.4</span>  Extra: interpreting the latent space</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/gorkamunoz/Machine-Learning-Course/blob/master/nbs/course/unsupervised_learning/02_generative.ipynb" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Generative modelling</h1>
+<h1 class="title d-none d-lg-block">Generative modeling</h1>
 </div>
 
 
@@ -220,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Gorka Muñoz-Gil </p>
+             <p>Gorka Muñoz-Gil and Borja Requena </p>
           </div>
   </div>
     
@@ -232,8 +325,701 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<p>In this notebook, we will explore generative modelling, the branch of machine learning that has perhaps seen the biggest advances in the last couple of years, fueled by the advent of larger language models (LLM). The goal in all cases is the following: we are given some dataset <span class="math inline">\(X\)</span>, sample from a given distribution <span class="math inline">\(p(x)\)</span>. Our goal is to create a model whose distribution <span class="math inline">\(p_\theta(x) \approx p(x)\)</span>. Once we have such a model, we can sample from it to generate new data points that resemble the original dataset.</p>
+<section id="maximum-likelihood-estimation" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Maximum likelihood estimation</h1>
+<p>Maximum Likelihood Estimation (MLE) is the classical starting point of generative modeling. Given a parametric family of probability distributions <span class="math inline">\(p_\theta(x)\)</span>, the goal is to learn parameters <span class="math inline">\(\theta\)</span> such that the model assigns high probability to the observed data. This is achieved by maximizing the (average) log-likelihood of the dataset, which minimize the distance between our model and the empirical distribution of the data: <span class="math display">\[{\theta}^* = \text{arg}\,\text{min}_{{\theta}} D_{KL}(\hat{p}_{\text{data}}||p_{{\theta}}) = \text{arg}\,\text{min}_{{\theta}} -\mathbb{E}_{x\sim\hat{p}_{\text{data}}}\left[\log p_{{\theta}}(x)\right]\,.\]</span> We can recognize here the negative log-likelihood loss function that we have previously seen in the course, which is the cross entropy between the empirical distribution and the one defined by the model, as we introduced in the <a href="../../course/linear_models/logistic_regression.html">logistic regression section</a>.</p>
+<p>ML is <strong>the most statistically efficient</strong> estimator. This means that no other estimator achieves a lower mean squared error (MSE) than the MLE for a fixed number of samples. Furthermore, it is <strong>consistent</strong>, which guarantees that it converges to the true value as we increase the number of data points, under two conditions:</p>
+<ul>
+<li><span class="math inline">\(p_{\text{data}}\)</span> lies within the hypothesis space of <span class="math inline">\(p_{{\theta}}\)</span>.</li>
+<li><span class="math inline">\(p_{\text{data}}\)</span> corresponds to a unique <span class="math inline">\({\theta}\)</span>.</li>
+</ul>
+<section id="example" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="example"><span class="header-section-number">1.1</span> Example</h2>
+<p>Let’s consider a small example to understand how this works. We will consider for that that our <span class="math inline">\(p_\theta\)</span> is a mixture of two Gaussians. For simplicity, and allow our model to properly converge, we will also consider that our dataset is samples for a mixture of Gaussian. Let’s consider for that the following class, that will help both generate the data and define our model:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GaussianMixture:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, phi, mu_0, std_0, mu_1, std_1):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Initialize a Gaussian mixture with two modes. `phi` denotes</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">        the probability to sample from distribution 1."""</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.phi <span class="op">=</span> phi</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mu_0, <span class="va">self</span>.std_0 <span class="op">=</span> mu_0, std_0</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mu_1, <span class="va">self</span>.std_1 <span class="op">=</span> mu_1, std_1</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sample(<span class="va">self</span>, n_samples):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">"Draw samples from a Gaussian mixture model."</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        which <span class="op">=</span> np.random.uniform(size<span class="op">=</span>n_samples) <span class="op">&lt;</span> <span class="va">self</span>.phi</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        samples_0 <span class="op">=</span> np.random.normal(<span class="va">self</span>.mu_0, <span class="va">self</span>.std_0, n_samples)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        samples_1 <span class="op">=</span> np.random.normal(<span class="va">self</span>.mu_1, <span class="va">self</span>.std_1, n_samples)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.where(which, samples_1, samples_0)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> pdf(<span class="va">self</span>, x):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">"Evaluate the Gaussian mixture pdf over x."</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        pdf_0 <span class="op">=</span> <span class="va">self</span>.gaussian_pdf(x, <span class="va">self</span>.mu_0, <span class="va">self</span>.std_0)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        pdf_1 <span class="op">=</span> <span class="va">self</span>.gaussian_pdf(x, <span class="va">self</span>.mu_1, <span class="va">self</span>.std_1)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (<span class="dv">1</span><span class="op">-</span><span class="va">self</span>.phi)<span class="op">*</span>pdf_0 <span class="op">+</span> <span class="va">self</span>.phi<span class="op">*</span>pdf_1</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> gaussian_pdf(x, mu, std):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.exp(<span class="op">-</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>))<span class="op">/</span>(std<span class="op">*</span>np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let’s now use it to generate our dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters of the mixture of Gaussians</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>phi, mu_0, std_0, mu_1, std_1 <span class="op">=</span> <span class="fl">0.7</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters of the datasets</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>size_train, size_test <span class="op">=</span> <span class="dv">500</span>, <span class="dv">500</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we generate our data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mixture <span class="op">=</span> GaussianMixture(phi, mu_0, std_0, mu_1, std_1)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> np.<span class="bu">round</span>(mixture.sample(size_train)).astype(<span class="bu">int</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> np.<span class="bu">round</span>(mixture.sample(size_test)).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can visualize the dataset as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.hist(x_train, bins <span class="op">=</span> <span class="dv">30</span>, label <span class="op">=</span> <span class="st">'Train'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.hist(x_test, bins <span class="op">=</span> <span class="dv">30</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, label <span class="op">=</span> <span class="st">'Test'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Value"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Count"</span>)<span class="op">;</span> plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.legend.Legend&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="02_generative_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Next, we define the loss function for the training data, considering that our <span class="math inline">\(p_\theta\)</span> is the mixture of Gaussians. Since we deal with a fairly low amount of data, we can compute the loss for the whole training set at once.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mle_train_loss(params):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    phi, mu_0, std_0, mu_1, std_1 <span class="op">=</span> params</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    pdf_0 <span class="op">=</span> mixture.gaussian_pdf(x_train, mu_0, std_0)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    pdf_1 <span class="op">=</span> mixture.gaussian_pdf(x_train, mu_1, std_1)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    log_likelihood <span class="op">=</span> np.log((<span class="dv">1</span><span class="op">-</span>phi)<span class="op">*</span>pdf_0 <span class="op">+</span> phi<span class="op">*</span>pdf_1)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.mean(log_likelihood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can simply use a <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html">scipy optimizer</a> to find the minimum.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>initial_parameters <span class="op">=</span> np.array([<span class="fl">0.5</span>, <span class="fl">5.</span>, <span class="fl">3.</span>, <span class="fl">15.</span>, <span class="fl">3.</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(mle_train_loss, x0<span class="op">=</span>initial_parameters, bounds<span class="op">=</span>[(<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">0</span>, <span class="dv">25</span>), (<span class="dv">0</span>, <span class="dv">5</span>), (<span class="dv">0</span>, <span class="dv">25</span>), (<span class="dv">0</span>, <span class="dv">5</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The parameters are:"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\t</span><span class="ss">Ground truth: phi=</span><span class="sc">{</span>mixture<span class="sc">.</span>phi<span class="sc">:.2f}</span><span class="ss">, mu_0=</span><span class="sc">{</span>mixture<span class="sc">.</span>mu_0<span class="sc">:.2f}</span><span class="ss">,"</span><span class="op">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f" std_0=</span><span class="sc">{</span>mixture<span class="sc">.</span>std_0<span class="sc">:.2f}</span><span class="ss">, mu_1=</span><span class="sc">{</span>mixture<span class="sc">.</span>mu_1<span class="sc">:.2f}</span><span class="ss">, std_1=</span><span class="sc">{</span>mixture<span class="sc">.</span>std_1<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\t</span><span class="ss">Estimation:   phi=</span><span class="sc">{</span>result<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">, mu_0=</span><span class="sc">{</span>result<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">,"</span><span class="op">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f" std_0=</span><span class="sc">{</span>result<span class="sc">.</span>x[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss">, mu_1=</span><span class="sc">{</span>result<span class="sc">.</span>x[<span class="dv">3</span>]<span class="sc">:.2f}</span><span class="ss">, std_1=</span><span class="sc">{</span>result<span class="sc">.</span>x[<span class="dv">4</span>]<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The parameters are:
+    Ground truth: phi=0.70, mu_0=5.00, std_0=2.00, mu_1=20.00, std_1=3.00
+    Estimation:   phi=0.72, mu_0=4.91, std_0=1.91, mu_1=20.27, std_1=2.85</code></pre>
+</div>
+</div>
+<p>As you can see, the estimation is quite good, and we ended almost reaching the groundtruth values. Nonetheless, as you may have guessed, this approach quickly becomes impractical in higher dimensions or with more complex models. First, we are relying here on a model for which we can compute the probability density function (pdf) in closed form. While this is good for optimization in small models, it hinders the expressivity of the model. Indeed, the optimization itself becomes quickly intractable as the number of parameters increases.</p>
+<p>In the following, we will explore other parametrization of <span class="math inline">\(p_\theta(x)\)</span> that allow us to scale to larger models and datasets.</p>
+</section>
+</section>
+<section id="boltzmann-machines" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Boltzmann Machines</h1>
+<p>Boltzmann machines (BM) are one of the earliest generative models, and are deeply connected to statistical phyics. Indeed, strictly speaking, a BM is based on the stochastic Ising model you have probably seen in a statistical physics course. They were later related learning first by John Hopfield (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC346238/">1982</a>) and later by Geoffrey Hinton (<a href="https://www.cs.utoronto.ca/~hinton/absps/fahlmanBM.pdf">1983</a>). If these two names are familiar to you is probably because they got the Nobel Prize in 2024 for setting up the foundations of deep learning. If you want to know more about their work, I highly recommend reading the Nobel Prize’s <a href="https://www.nobelprize.org/prizes/physics/2024/advanced-information/">scientific background</a>.</p>
+<p>The main idea behind Boltzmann Machines is to define a probability distribution over binary variables <span class="math inline">\(x \in \{0,1\}^D\)</span> through an energy function <span class="math inline">\(E_\theta(\sigma)\)</span>, where <span class="math inline">\(\sigma\)</span> denotes a configuration of the system. Although Boltzmann Machines can also be formulated for continuous variables, we restrict ourselves here, for simplicity, to the case of binary units. The configurations consists of two sets of units, <span class="math inline">\(\sigma = (v,h)\)</span>: the visible variables <span class="math inline">\(v\)</span>, which represent the observed data <span class="math inline">\(x\)</span>, and the hidden variables <span class="math inline">\(h\)</span>, which are introduced to capture complex dependencies among the visible variables.</p>
+<div id="fig-mdp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../figures/bm.svg" width="30%" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Fully connected Boltzmann Machine with visible variables <span class="math inline">\(v\)</span> and hidden variables <span class="math inline">\(h\)</span>.</figcaption><p></p>
+</figure>
+</div>
+<p>The energy function of such BM is then given by <span class="math display">\[\begin{equation}
+E_\theta(\sigma) = - \sum_{i, j} W_{ij} \sigma_i \sigma_j - \sum_i b_i \sigma_i,
+\end{equation}\]</span></p>
+<p>The joint distribution over visible and hidden variables (i.e.&nbsp;the full configuration) is defined as <span class="math display">\[\begin{equation}
+P_\theta(\sigma) = \frac{1}{Z_\theta}\, e^{-E_\theta(\sigma)},
+\end{equation}\]</span> where <span class="math inline">\(Z_\theta\)</span> is the partition function <span class="math display">\[\begin{equation}
+Z_\theta = \sum_{\sigma} e^{-E_\theta(\sigma)}.
+\end{equation}\]</span></p>
+<p>In practice, we are not interested in the full distribution over visible and hidden variables, but rather in the marginal distribution over visible variables:</p>
+<p><span class="math display">\[\begin{equation}
+p_\theta(v) = \sum_{h} P_\theta(\sigma = (v, h)) = \frac{1}{Z_\theta} \sum_{h} e^{-E_\theta(v, h)}.
+\end{equation}\]</span></p>
+<p>With that, we have defined our model <span class="math inline">\(p_\theta\)</span>, which we now want to use to approximate the dataset’s distribution <span class="math inline">\(p_{\text{data}}(x)\)</span>. To do so, we can use maximum likelihood estimation as before, which corresponds to minimizing the negative the log-likelihood of the data under the model:</p>
+<p><span class="math display">\[\begin{equation}
+\mathcal{L}(\theta) = -\sum_{x \in X} p_{\text{data}}(x) \log p_\theta(x).
+\end{equation}\]</span> where <span class="math inline">\(X\)</span> is our dataset.</p>
+<p>Given this, we now perform gradient descent to minimize the loss. As you can see from the previous equation, <span class="math inline">\(p_{\text{data}}\)</span> is independent on the training parameters, hence the minimization is only performed to <span class="math inline">\(\log p_\theta\)</span>. It can be shown that the derivative of this term with respect to a parameter <span class="math inline">\(\theta\)</span> is given by <span class="math display">\[\begin{equation}
+\partial_\theta \left( -\log p_\theta(v) \right)= \left&lt;\partial_\theta E_\theta\right&gt;_{\text{data}} - \left&lt;\partial_\theta E_\theta\right &gt;_{\text{model}},
+\end{equation}\]</span> where the bracket <span class="math inline">\(\left &lt;· \right&gt;\)</span> denotes the expectation value with respect to the probability distributions <span class="math inline">\(p_{\text{data}}\)</span> or <span class="math inline">\(p_\theta\)</span> for the data and model averages, respectively. The first term is called the positive phase, and the second term the negative phase. One of the main challenges when dealining with this models is computing these two terms, which is typically untractable. To deal with this issue, one typically resorts to approximate sampling methods such as Markov Chain Monte Carlo (MCMC) or contrastive divergence.</p>
+<section id="restricted-boltzmann-machines" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="restricted-boltzmann-machines"><span class="header-section-number">2.1</span> Restricted Boltzmann machines</h2>
+<p>One way to simplify the learning and sampling procedure in Boltzmann machines is to restrict the interaction structure between visible and hidden units. For instance, one can consider a bipartite graph structure, where visible units only interact with hidden units, and vice versa. This leads to the concept of Restricted Boltzmann Machines (RBMs), which were one of the earliest and most studied generative models in machine learning.</p>
+<div id="fig-mdp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../figures/rbm.svg" width="30%" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Restricted Boltzmann Machine with weights <span class="math inline">\(w_{ij}\)</span> and biases <span class="math inline">\(b_j\)</span> and <span class="math inline">\(a_i\)</span> for hidden and visible units, respectively.</figcaption><p></p>
+</figure>
+</div>
+<p>One of the nice simplifications when considering this bipartite structe is that <span class="math inline">\(\partial w_{ij} E_\theta = -v_i h_j\)</span>. In this way, the gradient of the negative log-likelihood with respect to the weights <span class="math inline">\(W_{ij}\)</span> can be expressed as <span class="math display">\[\begin{equation}
+\partial_{W_{ij}} \left( -\log p_\theta(v) \right)= \left&lt; v_i h_j \right&gt;_{\text{data}} - \left&lt; v_i h_j \right &gt;_{\text{model}}.
+\end{equation}\]</span> Similarly, the gradient with respect to the biases of the visible units <span class="math inline">\(a_i\)</span> and hidden units <span class="math inline">\(b_j\)</span> are given by <span class="math display">\[\begin{align}
+\partial_{a_{i}} \left( -\log p_\theta(v) \right) &amp;= \left&lt; v_i \right&gt;_{\text{data}} - \left&lt; v_i \right &gt;_{\text{model}}, \\
+\partial_{b_{j}} \left( -\log p_\theta(v) \right) &amp;= \left&lt; h_j \right&gt;_{\text{data}} - \left&lt; h_j \right &gt;_{\text{model}}.
+\end{align}\]</span></p>
+<p>Moreover, with this structure, the conditional distributions <span class="math inline">\(P_\theta(h|v)\)</span> and <span class="math inline">\(P_\theta(v|h)\)</span> become factorized, allowing for efficient Gibbs sampling. Specifically, the conditional distributions of a given hidden unit being 1 can be expressed as: <span class="math display">\[\begin{equation}
+P_\theta(h_j=1|v) = \sigma\left(\sum_{i} W_{ij} v_i + b_j\right),
+\end{equation}\]</span> where <span class="math inline">\(\sigma(x) = 1/(1 + e^{-x})\)</span> is the sigmoid function. Conversely, the conditional probability of a visible unit being 1 given the hidden units is: <span class="math display">\[\begin{equation}
+P_\theta(v_i=1|h) = \sigma\left(\sum_{j} W_{ij} h_j + a_i\right),
+\end{equation}\]</span></p>
+<p>From this, we can see that the positive phase on the gradient can be computed exactly, as it only involves sampling from the conditional distribution <span class="math inline">\(P_\theta(h|v)\)</span>. The negative phase, on the other hand, requires sampling from the full joint distribution <span class="math inline">\(P_\theta(\sigma)\)</span>. However, thanks to the bipartite structure, we can efficiently approximate it using a finite number of Gibbs sampling steps, alternating from the visible to the hidden, leading to efficient training algorithms such as Contrastive Divergence (CD). The latter works as follows:</p>
+<ol type="1">
+<li>For each data point <span class="math inline">\(v^{(0)}\)</span> in the dataset, sample the hidden units <span class="math inline">\(h^{(0)}\)</span> from the conditional distribution <span class="math inline">\(P_\theta(h|v^{(0)})\)</span>. While one could start with a random configuration, starting from the data point itself often leads to faster convergence.</li>
+<li>Sample a new visible configuration <span class="math inline">\(v^{(1)}\)</span> from the conditional distribution <span class="math inline">\(P_\theta(v|h^{(0)})\)</span>.</li>
+<li>Repeat steps 1 and 2 for a fixed number of iterations <span class="math inline">\(k\)</span> to obtain <span class="math inline">\(v^{(k)}\)</span> and <span class="math inline">\(h^{(k)}\)</span>.</li>
+</ol>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The goal of this exercise is to create a training loop for an RBM with binary units, i.e.&nbsp;<span class="math inline">\(v_i, h_j \in \{0, 1\}\)</span>. The goal is not to do a full training but rather to implement the concepts we introduced above. Your first task is to implementing the conditional probabilities for the hidden and visible units as functions (based on <code>torch</code>). <em>Tip:</em> you can use <code>torch.matmul</code> for matrix multiplication between inputs and weights, and <code>torch.sigmoid</code> for the sigmoid activation function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob_h_from_v(v, W, b):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute the conditional probability P(h|v) in an RBM."""</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob_v_from_h(h, W, a):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute the conditional probability P(v|h) in an RBM."""</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this code to test your function</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dim_v <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dim_h <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> torch.randn(dim_v, dim_h)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> torch.randn(dim_v)<span class="op">;</span> b <span class="op">=</span> torch.randn(dim_h)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>p_h <span class="op">=</span> prob_h_from_v(torch.ones(<span class="dv">1</span>, dim_v), W, b)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>p_v <span class="op">=</span> prob_v_from_h(torch.ones(<span class="dv">1</span>, dim_h), W, a)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> p_h.shape[<span class="dv">1</span>] <span class="op">==</span> dim_h</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> p_v.shape[<span class="dv">1</span>] <span class="op">==</span> dim_v</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>p_h, p_v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(tensor([[0.3706, 0.1061, 0.0429]]),
+ tensor([[0.9292, 0.1377, 0.2243, 0.0839, 0.3749, 0.2288, 0.8154, 0.8358, 0.1229,
+          0.8982]]))</code></pre>
+</div>
+</div>
+<p>Now that you have these two functions, you can implement a single step of Gibbs sampling. Your task is to implement the function <code>gibbs_step</code>, which takes as input a visible configuration <code>v</code>, the weights <code>W</code>, and the biases <code>a</code> and <code>b</code>, and returns a new visible configuration after one Gibbs sampling step. <em>Tip:</em> remember that after computing the conditional probabilities, you need to sample from a Bernoulli distribution to obtain binary values for the units.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gibbs_step(v, W, a, b):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform one step of Gibbs sampling in an RBM."""</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first comput prob of hidden:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    p_h <span class="op">=</span> ...</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then sample using bernoulli distribution</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> torch.bernoulli(p_h)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># From here compute prob of visible and sample again with bernoulli</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> v_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this code to test your function</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> torch.ones(<span class="dv">1</span>, dim_v)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> torch.randn(dim_v, dim_h)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> torch.randn(dim_v)<span class="op">;</span> b <span class="op">=</span> torch.randn(dim_h)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>v_new <span class="op">=</span> gibbs_step(v, W, a, b)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (v <span class="op">!=</span> v_new).<span class="bu">any</span>()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>v, v_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]]),
+ tensor([[0., 0., 1., 0., 0., 0., 1., 1., 1., 1.]]))</code></pre>
+</div>
+</div>
+<p>Next, you can implement the positive and negative phases of the gradient. Your task is to implement the function <code>compute_gradients</code>, which takes as input a batch of visible configurations <code>v_batch</code>, the weights <code>W</code>, and the biases <code>a</code> and <code>b</code>, and returns the gradients with respect to <code>W</code>, <code>a</code>, and <code>b</code>. <em>Tip:</em> for the negative phase, you will need to use CD, i.e.&nbsp;use <span class="math inline">\(k\)</span> times the <code>gibbs_step</code> function you implemented earlier to sample from the model distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use this code to test your function </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We create a dataset of samples</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> torch.randint(<span class="dv">0</span>, <span class="dv">2</span>, (<span class="dv">100</span>, dim_v)).<span class="bu">float</span>()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define our model</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> torch.randn(dim_v, dim_h)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> torch.randn(dim_v)<span class="op">;</span> b <span class="op">=</span> torch.randn(dim_h)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the gradients</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>W_grad, a_grad, b_grad <span class="op">=</span> compute_gradients(v, W, a, b, k<span class="op">=</span><span class="dv">5</span>) </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>W_grad, a_grad, b_grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(tensor([[-0.2000, -0.1100, -0.1900],
+         [-0.2600, -0.2000, -0.2400],
+         [-0.2200, -0.1300, -0.2400],
+         [-0.1800, -0.1300, -0.1900],
+         [-0.0200,  0.0300, -0.0200],
+         [ 0.1900,  0.1600,  0.1700],
+         [-0.2900, -0.1500, -0.3000],
+         [-0.2400, -0.1700, -0.2500],
+         [-0.3100, -0.2300, -0.3000],
+         [ 0.1600,  0.1500,  0.1500]]),
+ tensor([-0.1900, -0.2500, -0.2200, -0.1700,  0.0000,  0.2000, -0.2900, -0.2400,
+         -0.3000,  0.1700]),
+ tensor([-0.0200, -0.0100, -0.0300]))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="variational-autoencoders" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Variational Autoencoders</h1>
+<p>When exploring unsupervised methods, we took a look at autoencoders (AE). Autoencoders learn to compress data into a low-dimensional latent representation and reconstruct the input from it by minimizing a reconstruction error. While this provides a powerful nonlinear alternative to methods such as PCA, standard autoencoders learn an unconstrained latent space, which is often irregular and poorly suited for sampling or interpretation.</p>
+<p>Variational Autoencoders (VAEs) overcome this limitation by giving the latent space a probabilistic structure. Instead of encoding each input as a single point, the encoder outputs a distribution over latent variables, which is encouraged during training to match a simple prior, typically a standard normal distribution. This regularization makes the latent space smooth and continuous.</p>
+<p>This probabilistic formulation naturally turns VAEs into generative models. Once trained, new data can be generated by sampling latent variables from the prior and passing them through the decoder. At the same time, VAEs retain the representation-learning capabilities of autoencoders, learning compact latent variables that capture the essential structure of the data. In physics and other scientific applications, this makes VAEs particularly useful for uncovering meaningful low-dimensional descriptions while enabling controlled data generation.</p>
+<section id="architecture" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="architecture"><span class="header-section-number">3.1</span> Architecture</h2>
+<div id="fig-mdp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../../figures/vae.svg" width="30%" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Variational Autoencoder</figcaption><p></p>
+</figure>
+</div>
+<p>Just as the AE, VAEs consist of an encoder, latent space and a decoder. The encoder maps input data <span class="math inline">\(x\)</span> to a distribution <span class="math inline">\(z\)</span> in the latent space. To do so in a efficient and trainable way, the encoder typically outputs the parameters of the chosen latent distribution, which in almost all cases is a Gaussian. This is known as the <em>Reparametrization Trick</em>. Specifically, for each latent neuron <span class="math inline">\(z_i\)</span>, the encoder outputs a mean <span class="math inline">\(\mu_i(x)\)</span> and variance <span class="math inline">\(\sigma_i^2(x)\)</span>. Note that, in practice, the encoder rather outputs the log-variance <span class="math inline">\(\log \sigma_i^2(x)\)</span> for numerical stability.</p>
+<p>As every latent neuron is conditionally independent from each other, the latent space corresponds to a multi-variate Gaussian with diagonal covariance matrix, whose distribution can be expressed <span class="math inline">\(q_\phi(z|x) = \mathcal{N}(z; \mu(x), \text{diag}(\sigma^2(x)))\)</span>. During training, we sample <span class="math inline">\(z\)</span> from this distribution using the reparametrization trick: we first sample <span class="math inline">\(\epsilon \sim \mathcal{N}(0, I)\)</span> and then compute, for all <span class="math inline">\(z_i\)</span>, <span class="math inline">\(z_i = \mu_i(x) + \sigma_i(x) \odot \epsilon\)</span>, where <span class="math inline">\(\odot\)</span> denotes element-wise multiplication. Then, the sampled latent space is fed in the decoder to generate the reconstructed input <span class="math inline">\(\hat{x}\)</span>. The decoder hence defines a distribution <span class="math inline">\(p_\theta(x|z)\)</span> over the input space.</p>
+</section>
+<section id="loss" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="loss"><span class="header-section-number">3.2</span> Loss</h2>
+<p>The goal of VAE, as in all previous cases, is to approximate the data distribution <span class="math inline">\(p_{\text{data}}(x)\)</span> via the maximizing the log-likelihood <span class="math inline">\(\log p_\theta(x)\)</span>. However, in this case, computing this term directly is intractable, as it requires integrating over all possible latent variables:</p>
+<p><span class="math display">\[\begin{equation}
+\log p_\theta(x) = \log \int p_\theta(x|z) p(z) dz.
+\end{equation}\]</span> Instead, we optimize a lower bound on the log-likelihood, known as the Evidence Lower Bound (ELBO): <span class="math display">\[\begin{equation}
+\log p_\theta(x) \geq \mathcal{L}_{\text{ELBO}} = \mathbb{E}_{z \sim q_\phi(z|x)} [\log p_\theta(x|z)] - D_{KL}(q_\phi(z|x) || p(z)).
+\end{equation}\]</span></p>
+<p>The ELBO above contains two terms:</p>
+<ol type="1">
+<li>Reconstruction term <span class="math inline">\(\mathcal{L}_r = \mathbb{E}_{z \sim q_\phi(z|x)} [\log p_\theta(x|z)]\)</span>: This is the expected log-likelihood of the data given the latent variables sampled from the encoder’s distribution. It encourages the decoder to reconstruct the input data accurately from the latent representation. In most cases, the previous term is implemented as a standard reconstruction loss, such as mean squared error (MSE) for continuous data or binary cross-entropy for binary data.</li>
+<li>Latent term <span class="math inline">\(\mathcal{L}_z = - D_{KL}(q_\phi(z|x) || p(z))\)</span>: This is the Kullback-Leibler divergence between the encoder’s distribution <span class="math inline">\(q_\phi(z|x)\)</span> and the uninformed prior distribution <span class="math inline">\(p(z)\)</span>, typically chosen to be <span class="math inline">\(p(z) = \mathcal{N}(0,1)\)</span>, i.e.&nbsp;a standard normal distribution with mean zero and variance one. This term acts as a regularizer, encouraging the learned latent distribution to be close to the prior, which promotes smoothness and continuity in the latent space. On the other hand, by choosing both the prior <span class="math inline">\(p(z)\)</span> and the encoder distribution <span class="math inline">\(q_\phi(z|x)\)</span> as Gaussian distributions, we can compute the KL divergence in closed form: <span class="math display">\[\begin{equation}
+\mathcal{L}_z = \frac{1}{2} \sum_{i=1}^{d} \left(1 + \log \sigma_i^2(x) - \sigma_i^2(x) - \mu_i^2(x) \right),
+\end{equation}\]</span> where <span class="math inline">\(d\)</span> is the dimensionality of the latent space.</li>
+</ol>
+</section>
+<section id="interpretability-in-vaes" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="interpretability-in-vaes"><span class="header-section-number">3.3</span> Interpretability in VAEs</h2>
+<p>The balance between the reconstruction and latent terms in the ELBO is crucial for learning meaningful and interpretable latent representations in VAEs. A strong emphasis on the reconstruction term can lead to overfitting, where the model memorizes the training data without capturing the underlying structure. Conversely, a dominant latent term may result in poor reconstructions, as the model prioritizes matching the prior over accurately representing the data.</p>
+<p>Recently, a variant known as the <span class="math inline">\(\beta\)</span>-VAE has been proposed (<a href="https://openreview.net/forum?id=Sy2fzU9gl">Higgins et al.&nbsp;(2007)</a>), which introduces a hyperparameter <span class="math inline">\(\beta\)</span> to weight the latent term: <span class="math display">\[\begin{equation}
+\mathcal{L} = \mathbb{E}_{z \sim q_\phi(z|x)} [\log p_\theta(x|z)] - \beta D_{KL}(q_\phi(z|x) || p(z)).
+\end{equation}\]</span></p>
+<p>This modification allows for greater control over the trade-off between reconstruction fidelity and latent space regularization. By tuning <span class="math inline">\(\beta\)</span>, one can encourage the model to learn more disentangled and interpretable latent factors, which can be particularly beneficial in scientific applications where understanding the underlying generative factors is essential.</p>
+<p>This feature is specially useful in physics applications, where one often seeks to uncover latent variables that correspond to meaningful physical quantities. More to come on the presentation of the paper <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.124.010508">“Discovering Physical Concepts with Neural Networks”, Iten et al.&nbsp;(2020)</a>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Exercise - Generating MNIST
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this exercise we will implement what we just learned on VAEs to generate new instances of the MNIST dataset. Let’s consider as architecture an extension ofthe fully convolutional AE used in the denoising example in the <a href="../../course/unsupervised_learning/intro_to_unsup.html">unsupervised learning notebook</a>. Your first task is to adapt the architecture to implement a convolutional VAE. Below I started the class, adding all necessary layers you will need, as well as the reparameterization trick. Your task is to create the forward pass. When creating VAEs it is always useful to separate in different methods the decode / encode operations as we did when create <code>Conv_AE</code> in the unsupervised notebook. You can use that implementation as a guide.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VAE(nn.Module):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, latent_dim):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encoder: 1x28x28 -&gt; 16x14x14 -&gt; 32x7x7</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.encoder <span class="op">=</span> nn.Sequential(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            nn.Conv2d(<span class="dv">1</span>, <span class="dv">16</span>, <span class="dv">3</span>, stride<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="dv">1</span>),  <span class="co"># -&gt; 16x14x14</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(<span class="va">True</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            nn.Conv2d(<span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">3</span>, stride<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="dv">1</span>), <span class="co"># -&gt; 32x7x7</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(<span class="va">True</span>)            </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Latent space</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.enc_out_dim <span class="op">=</span> <span class="dv">32</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">*</span> <span class="dv">7</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc_mu     <span class="op">=</span> nn.Linear(<span class="va">self</span>.enc_out_dim, latent_dim)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc_logvar <span class="op">=</span> nn.Linear(<span class="va">self</span>.enc_out_dim, latent_dim)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc_z <span class="op">=</span> nn.Linear(latent_dim, <span class="va">self</span>.enc_out_dim)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decoder: 32x7x7 -&gt; 16x14x14 -&gt; 1x28x28</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.decoder <span class="op">=</span> nn.Sequential(</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>            nn.ConvTranspose2d(<span class="dv">32</span>, <span class="dv">16</span>, <span class="dv">3</span>, stride<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="dv">1</span>, output_padding<span class="op">=</span><span class="dv">1</span>), <span class="co"># -&gt; 16x14x14</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(<span class="va">True</span>),</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>            nn.ConvTranspose2d(<span class="dv">16</span>, <span class="dv">1</span>, <span class="dv">3</span>, stride<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="dv">1</span>, output_padding<span class="op">=</span><span class="dv">1</span>),  <span class="co"># -&gt; 1x28x28</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>            nn.Sigmoid()</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reparameterize(<span class="va">self</span>, mu, logvar):</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>        std <span class="op">=</span> torch.exp(<span class="fl">0.5</span> <span class="op">*</span> logvar)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>        eps <span class="op">=</span> torch.randn_like(std)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mu <span class="op">+</span> eps <span class="op">*</span> std</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Your code here</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># because we need mus and logvars for the loss, we also</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># output them in the forward pass</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x_reconstructed, mu, logvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use this cell to test your implementation</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> torch.randn(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">28</span>, <span class="dv">28</span>)  <span class="co"># batch of 4 random images</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>vae <span class="op">=</span> VAE(latent_dim<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> vae(data)[<span class="dv">0</span>].shape <span class="op">==</span> data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have the architecture, its time to create the loss. In this case, we will use the MSE as reconstruction loss, as the images are grayscale. Your task is to implement a class that computes the ELBO loss we introduced before, similar as we did when studying the <a href="../../course/deep_learning/regularization_techniques.html">regularization techniques</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> vae_loss(nn.Module):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="bu">input</span>, targets, beta <span class="op">=</span> <span class="fl">1.0</span>):</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        preds, mu, logvar <span class="op">=</span> <span class="bu">input</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Your code here!</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> L_r <span class="op">+</span> beta <span class="op">*</span> L_z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use this code to test your implementation</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> torch.ones(N, <span class="dv">1</span>, <span class="dv">28</span>, <span class="dv">28</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> torch.zeros(N, <span class="dv">1</span>, <span class="dv">28</span>, <span class="dv">28</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> torch.zeros(N, latent_dim)<span class="op">+</span><span class="fl">0.1</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> torch.ones(N, latent_dim)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> vae_loss()</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> loss((preds, mu, torch.log(sigma<span class="op">**</span><span class="dv">2</span>)), targets)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> torch.<span class="bu">round</span>(val, decimals <span class="op">=</span> <span class="dv">1</span>) <span class="op">==</span> <span class="fl">1.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We have now all the ingredients to train our network. We will make use of <code>fastai</code> to simplify the training loop. Below is the full code to train the VAE on MNIST and generate new samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> datasets, transforms</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> TensorDataset, DataLoader</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> Learner, Adam, DataLoaders</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>train_dataset <span class="op">=</span> datasets.MNIST(root<span class="op">=</span><span class="st">"data"</span>, train<span class="op">=</span><span class="va">True</span>, download<span class="op">=</span><span class="va">True</span>, transform<span class="op">=</span>transforms.ToTensor()).data.to(torch.<span class="bu">float</span>).unsqueeze(<span class="dv">1</span>)<span class="op">/</span><span class="dv">255</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>test_dataset  <span class="op">=</span> datasets.MNIST(root<span class="op">=</span><span class="st">"data"</span>, train<span class="op">=</span><span class="va">False</span>, download<span class="op">=</span><span class="va">True</span>, transform<span class="op">=</span>transforms.ToTensor()).data.to(torch.<span class="bu">float</span>).unsqueeze(<span class="dv">1</span>)<span class="op">/</span><span class="dv">255</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> TensorDataset(train_dataset, train_dataset)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> TensorDataset(test_dataset, test_dataset)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataLoaders</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(train_data, batch_size<span class="op">=</span>batch_size, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>val_loader <span class="op">=</span> DataLoader(test_data, batch_size<span class="op">=</span>batch_size, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> DataLoaders(train_loader, val_loader)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we create a Learner object, which bundles together the data, model, loss function and optimizer</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>latent_dim <span class="op">=</span> <span class="dv">8</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>learner <span class="op">=</span> Learner(data, VAE(latent_dim<span class="op">=</span>latent_dim), loss_func <span class="op">=</span> vae_loss(), opt_func<span class="op">=</span>Adam)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally we train the model using</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>learner.fit(<span class="dv">20</span>, lr <span class="op">=</span> <span class="fl">1e-3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>5179.431641</td>
+      <td>5079.499512</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4594.440430</td>
+      <td>4530.152832</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>4366.184570</td>
+      <td>4327.264160</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4279.003906</td>
+      <td>4238.279785</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4188.517090</td>
+      <td>4177.915039</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>4148.207031</td>
+      <td>4149.649902</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>4109.821289</td>
+      <td>4112.739746</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>4097.979980</td>
+      <td>4069.386475</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>4075.793945</td>
+      <td>4050.415527</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>4069.058838</td>
+      <td>4028.198730</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>4049.979004</td>
+      <td>4005.021240</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>4030.474854</td>
+      <td>3999.958496</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>4002.741699</td>
+      <td>3988.435547</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>3991.188232</td>
+      <td>3985.426514</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>3967.706543</td>
+      <td>3966.063965</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>3978.168945</td>
+      <td>3957.440430</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>3967.397705</td>
+      <td>3946.013672</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>3964.112549</td>
+      <td>3935.531250</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>3950.175049</td>
+      <td>3932.751221</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>3935.263916</td>
+      <td>3924.552490</td>
+      <td>00:04</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<p>To test the generative capabilities of the model, you can reconstruct some images from the test set:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> test_dataset[torch.randint(<span class="dv">0</span>, test_dataset.shape[<span class="dv">0</span>], (<span class="dv">10</span>,))]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>preds_test <span class="op">=</span> learner.model(targets.to(<span class="st">'cuda'</span>))[<span class="dv">0</span>].detach().cpu()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">10</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">2</span>))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p, t, ax <span class="kw">in</span> <span class="bu">zip</span>(preds_test, targets, ax.transpose()):</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].imshow(t[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>].imshow(p[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax.axis('off')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="02_generative_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="extra-interpreting-the-latent-space" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="extra-interpreting-the-latent-space"><span class="header-section-number">3.4</span> Extra: interpreting the latent space</h2>
+<p>As we mentioned before, one of the main advantages of VAEs is that they learn a structured latent space that can be interpreted. We will learn more about its use in physics later in the course. Here, we will just explore a bit how to visualize the latent space. A common approach is to look at the latent dimensions with highest variance, as they typically capture the most relevant features of the data. We can then vary these dimensions while keeping the others fixed to see how they affect the generated images. These types of plots are known as latent traversals.</p>
+<div class="cell">
+<details>
+<summary>Plot code - Latent traversal for most significant dimensions</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We identify the latent neurons with lowest logvar, i.e. the ones that receive less noise from the latent</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>logvar <span class="op">=</span> learner.model(test_dataset.to(<span class="st">'cuda'</span>))[<span class="dv">2</span>].detach().cpu()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>z_idx <span class="op">=</span> logvar.mean(<span class="dv">0</span>).sort()[<span class="dv">1</span>][:<span class="dv">2</span>]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we create a grid of images by varying these two latent dimensions</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ns <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>values_latent <span class="op">=</span> torch.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, ns)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> torch.zeros((ns<span class="op">*</span>ns, latent_dim))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>z[:, z_idx[<span class="dv">0</span>]] <span class="op">=</span> values_latent.repeat(ns)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>z[:, z_idx[<span class="dv">1</span>]] <span class="op">=</span> values_latent.unsqueeze(<span class="dv">1</span>).repeat(<span class="dv">1</span>, ns).view(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(ns, ns, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(ns):</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(ns):</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        z_ij <span class="op">=</span> z[i<span class="op">*</span>ns <span class="op">+</span> j].unsqueeze(<span class="dv">0</span>).to(<span class="st">'cuda'</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        sample_ij <span class="op">=</span> learner.model.decode(z_ij).detach().cpu()</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        ax[i, j].imshow(sample_ij[<span class="dv">0</span>,<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        ax[i, j].axis(<span class="st">'off'</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">###### Visual helpers #####</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(top<span class="op">=</span><span class="fl">0.9</span>, left<span class="op">=</span><span class="fl">0.12</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Top arrow ----</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>plt.annotate(</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.82</span>, <span class="fl">0.85</span>), xytext<span class="op">=</span>(<span class="fl">0.12</span>, <span class="fl">0.85</span>),</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    xycoords<span class="op">=</span><span class="st">'figure fraction'</span>,</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, lw<span class="op">=</span><span class="fl">1.5</span>),</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    annotation_clip<span class="op">=</span><span class="va">False</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.52</span>, <span class="fl">0.96</span>, <span class="vs">r'$z_1$'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>,</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>         transform<span class="op">=</span>fig.transFigure)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Left arrow ----</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>plt.annotate(</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>), xytext<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.8</span>),</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>    xycoords<span class="op">=</span><span class="st">'figure fraction'</span>,</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.04</span>, <span class="fl">0.5</span>, <span class="vs">r'$z_2$'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>         rotation<span class="op">=</span><span class="dv">90</span>, transform<span class="op">=</span>fig.transFigure)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="02_generative_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>As you can see, varying these two latent dimensions leads to smooth changes in the generated images, indicating that the latent space encodes a meaningful representation of the data. We can do now a similar plot for all latent dimensions, varying one at a time while keeping the others fixed to zero. In the following plot, each row corresponds to a latent dimension, and each column to a different value of that dimension.</p>
+<div class="cell">
+<details>
+<summary>Plot code - Latent traversal</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(latent_dim, ns, figsize<span class="op">=</span>(ns, latent_dim))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx_z <span class="kw">in</span> <span class="bu">range</span>(latent_dim):</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    ns <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    values_latent <span class="op">=</span> torch.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, ns)    </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> torch.zeros((ns<span class="op">*</span>ns, latent_dim))</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    z[:, idx_z] <span class="op">=</span> values_latent.repeat(ns)    </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(ns):            </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> learner.model.decode(z[i].to(<span class="st">'cuda'</span>).unsqueeze(<span class="dv">0</span>)).detach().cpu()</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        ax[idx_z, i].imshow(sample[<span class="dv">0</span>,<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        ax[idx_z, i].axis(<span class="st">'off'</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">###### Visual helpers #####</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(top<span class="op">=</span><span class="fl">0.9</span>, left<span class="op">=</span><span class="fl">0.12</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Top arrow ----</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>plt.annotate(</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.82</span>, <span class="fl">0.85</span>), xytext<span class="op">=</span>(<span class="fl">0.12</span>, <span class="fl">0.85</span>),</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    xycoords<span class="op">=</span><span class="st">'figure fraction'</span>,</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, lw<span class="op">=</span><span class="fl">1.5</span>),</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    annotation_clip<span class="op">=</span><span class="va">False</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.52</span>, <span class="fl">0.96</span>, <span class="st">'latent traversal'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>,</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>         transform<span class="op">=</span>fig.transFigure)</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Left arrow ----</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>plt.annotate(</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">''</span>, xy<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>), xytext<span class="op">=</span>(<span class="fl">0.05</span>, <span class="fl">0.8</span>),</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    xycoords<span class="op">=</span><span class="st">'figure fraction'</span>,</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.04</span>, <span class="fl">0.5</span>, <span class="st">'latent dimension'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>         rotation<span class="op">=</span><span class="dv">90</span>, transform<span class="op">=</span>fig.transFigure)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="02_generative_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
